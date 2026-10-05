@@ -6,10 +6,12 @@ namespace GestionEquipo.Api.Features.Directory;
 
 public static class GetDirectory
 {
-    public static async Task<IResult> Handle(string resource, HttpContext ctx, Database db, EquipoDbContext equipoDb)
+    public static async Task<IResult> Handle(string resource, HttpContext ctx, Database db, EquipoDbContext equipoDb, GestionEquipo.Api.Modules.Proyectos.Infrastructure.ProyectosDbContext proyectosDb)
     {
         if (GestionEquipo.Api.Modules.Equipo.Features.EquipoResourceDispatcher.Handles(resource))
             return await GestionEquipo.Api.Modules.Equipo.Features.EquipoResourceDispatcher.DirectoryAsync(resource, ctx, equipoDb);
+        if (GestionEquipo.Api.Modules.Proyectos.Features.ProyectosResourceDispatcher.Handles(resource))
+            return await GestionEquipo.Api.Modules.Proyectos.Features.ProyectosResourceDispatcher.DirectoryAsync(resource, ctx, proyectosDb);
 
         var r = ResourceCatalog.Get(resource);
         if (r.Readonly || resource is "evidencia_hora_extra" or "parametro_sistema") throw new BusinessException("Catálogo no disponible", 404);

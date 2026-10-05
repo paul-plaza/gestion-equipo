@@ -1,8 +1,6 @@
-using GestionEquipo.Api.Infrastructure.Specifications;
-using GestionEquipo.Api.Modules.Equipo.Domain;
 using GestionEquipo.Api.TeamHub;
 
-namespace GestionEquipo.Api.Modules.Equipo.Infrastructure.Specifications;
+namespace GestionEquipo.Api.Infrastructure.Specifications;
 
 // Spec reutilizado por contrato_externo, persona_tecnologia y persona_aplicacion
 // (Personal=true, dueño = PersonaId): visible solo para el propio dueño, su jefe

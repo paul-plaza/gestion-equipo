@@ -7,11 +7,14 @@ namespace GestionEquipo.Api.Features.Resources;
 
 public static class ListResources
 {
-    public static async Task<IResult> Handle(string resource, HttpContext ctx, Database db, EquipoDbContext equipoDb, int page = 1, int pageSize = 50, string? search = null)
+    public static async Task<IResult> Handle(string resource, HttpContext ctx, Database db, EquipoDbContext equipoDb, GestionEquipo.Api.Modules.Proyectos.Infrastructure.ProyectosDbContext proyectosDb, int page = 1, int pageSize = 50, string? search = null)
     {
         // Módulo Equipo (EF Core + DDD): se resuelve acá, no con el motor genérico de abajo.
         if (GestionEquipo.Api.Modules.Equipo.Features.EquipoResourceDispatcher.Handles(resource))
             return await GestionEquipo.Api.Modules.Equipo.Features.EquipoResourceDispatcher.ListAsync(resource, ctx, equipoDb, page, pageSize, search);
+        // Módulo Proyectos (EF Core + DDD): idem.
+        if (GestionEquipo.Api.Modules.Proyectos.Features.ProyectosResourceDispatcher.Handles(resource))
+            return await GestionEquipo.Api.Modules.Proyectos.Features.ProyectosResourceDispatcher.ListAsync(resource, ctx, proyectosDb, page, pageSize, search);
 
         var r = ResourceCatalog.Get(resource); await using var c = await db.Open(); var a = await ActorContext.GetActor(ctx, c);
         if (r.Readonly) ActorContext.RequireAdmin(a);

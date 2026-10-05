@@ -10,7 +10,7 @@ namespace GestionEquipo.Api.Features.Resources;
 // enviados contra el catálogo, aplica las reglas de escritura y persiste con upsert genérico.
 internal static class SaveResource
 {
-    public static async Task<IResult> Handle(string resource, string? id, JsonObject body, HttpContext ctx, Database db, EquipoDbContext equipoDb)
+    public static async Task<IResult> Handle(string resource, string? id, JsonObject body, HttpContext ctx, Database db, EquipoDbContext equipoDb, GestionEquipo.Api.Modules.Proyectos.Infrastructure.ProyectosDbContext proyectosDb)
     {
         // Módulo Equipo (EF Core + DDD): se resuelve acá, no con el motor genérico de abajo.
         if (GestionEquipo.Api.Modules.Equipo.Features.EquipoResourceDispatcher.Handles(resource))
@@ -18,6 +18,13 @@ internal static class SaveResource
             return id is null
                 ? await GestionEquipo.Api.Modules.Equipo.Features.EquipoResourceDispatcher.CreateAsync(resource, body, ctx, equipoDb)
                 : await GestionEquipo.Api.Modules.Equipo.Features.EquipoResourceDispatcher.UpdateAsync(resource, id, body, ctx, equipoDb);
+        }
+        // Módulo Proyectos (EF Core + DDD): idem.
+        if (GestionEquipo.Api.Modules.Proyectos.Features.ProyectosResourceDispatcher.Handles(resource))
+        {
+            return id is null
+                ? await GestionEquipo.Api.Modules.Proyectos.Features.ProyectosResourceDispatcher.CreateAsync(resource, body, ctx, proyectosDb)
+                : await GestionEquipo.Api.Modules.Proyectos.Features.ProyectosResourceDispatcher.UpdateAsync(resource, id, body, ctx, proyectosDb);
         }
 
         var r = ResourceCatalog.Get(resource); await using var c = await db.Open(); var a = await ActorContext.GetActor(ctx, c);

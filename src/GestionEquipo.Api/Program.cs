@@ -13,6 +13,8 @@ builder.Services.AddSingleton(NpgsqlDataSource.Create(cs.ConnectionString));
 builder.Services.AddSingleton<Database>();
 // Módulo Equipo (DDD + EF Core): usa el mismo NpgsqlDataSource que el motor genérico de TeamHub.
 builder.Services.AddDbContext<EquipoDbContext>((sp, o) => o.UseNpgsql(sp.GetRequiredService<NpgsqlDataSource>()));
+// Módulo Proyectos (DDD + EF Core): idem.
+builder.Services.AddDbContext<GestionEquipo.Api.Modules.Proyectos.Infrastructure.ProyectosDbContext>((sp, o) => o.UseNpgsql(sp.GetRequiredService<NpgsqlDataSource>()));
 builder.Services.AddCors(o=>o.AddDefaultPolicy(p=>p.WithOrigins(builder.Configuration.GetSection("TeamHub:AllowedOrigins").Get<string[]>()??["http://localhost:4200"]).AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
 var local=builder.Environment.IsDevelopment() && builder.Configuration.GetValue<bool>("TeamHub:LocalDevelopment");
 builder.Services.AddAuthentication(o=>{o.DefaultScheme="TeamHub";o.DefaultChallengeScheme="TeamHub";})

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TeamHub.Projects")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52dd6ee62f7696edabde92a0b1159789e8822e53")]
 [assembly: System.Reflection.AssemblyProductAttribute("TeamHub.Projects")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TeamHub.Projects")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

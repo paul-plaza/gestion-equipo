@@ -6,6 +6,6 @@ namespace GestionEquipo.Api.Features.Resources;
 
 public static class UpdateResource
 {
-    public static Task<IResult> Handle(string resource, string id, JsonObject body, HttpContext ctx, Database db, EquipoDbContext equipoDb) =>
-        SaveResource.Handle(resource, id, body, ctx, db, equipoDb);
+    public static Task<IResult> Handle(string resource, string id, JsonObject body, HttpContext ctx, Database db, EquipoDbContext equipoDb, GestionEquipo.Api.Modules.Proyectos.Infrastructure.ProyectosDbContext proyectosDb) =>
+        SaveResource.Handle(resource, id, body, ctx, db, equipoDb, proyectosDb);
 }

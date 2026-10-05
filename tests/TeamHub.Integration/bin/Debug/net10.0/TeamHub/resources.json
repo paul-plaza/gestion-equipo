@@ -65,6 +65,125 @@
     ]
   },
   {
+    "name": "proveedor",
+    "label": "Proveedores",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "activo",
+        "label": "Activo",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "product_owner",
+    "label": "Product Owners",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombres",
+        "label": "Nombres",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "apellidos",
+        "label": "Apellidos",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "correo",
+        "label": "Correo",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "celular",
+        "label": "Celular",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "cargo",
+        "label": "Cargo",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "area",
+        "label": "Área",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "activo",
+        "label": "Activo",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
     "name": "cargo",
     "label": "Cargos",
     "key": "id",
@@ -493,12 +612,12 @@
       },
       {
         "name": "entra_object_id",
-        "label": "Identificador de Entra ID",
+        "label": "Identificador de Entra ID (GUID)",
         "type": "uuid",
         "required": false,
         "options": [],
         "reference": null,
-        "readonly": false
+        "readonly": true
       },
       {
         "name": "estado",
@@ -547,6 +666,24 @@
         "required": true,
         "options": [],
         "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "proveedor_id",
+        "label": "Proveedor",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "proveedor",
+        "readonly": false
+      },
+      {
+        "name": "costo_hora",
+        "label": "Costo por hora",
+        "type": "numeric",
+        "required": true,
+        "options": [],
+        "reference": null,
         "readonly": false
       },
       {
@@ -685,6 +822,15 @@
         "required": false,
         "options": [],
         "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "product_owner_id",
+        "label": "Product Owner",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "product_owner",
         "readonly": false
       },
       {
@@ -847,6 +993,33 @@
         "required": true,
         "options": [],
         "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas_mensuales",
+        "label": "Horas mensuales",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas_presupuestadas",
+        "label": "Horas presupuestadas",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "reemplaza_asignacion_id",
+        "label": "Reemplaza a",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "asignacion",
         "readonly": false
       },
       {

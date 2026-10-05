@@ -1,4 +1,4 @@
-namespace GestionEquipo.Api.Modules.Equipo.Domain;
+namespace GestionEquipo.Api.Infrastructure.Specifications;
 
 // Entidades "personales" (Personal=true en resources.json): solo las ve el
 // dueño (PersonaId), su jefe directo si es jefe_area, o cualquiera si es

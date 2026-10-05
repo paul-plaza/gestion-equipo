@@ -1,3 +1,5 @@
+using GestionEquipo.Api.Infrastructure.Specifications;
+
 namespace GestionEquipo.Api.Modules.Equipo.Domain;
 
 // Historial inmutable (trigger historial_inmutable en Postgres bloquea update/delete):

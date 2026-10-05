@@ -1,3 +1,5 @@
+using GestionEquipo.Api.Infrastructure.Specifications;
+
 namespace GestionEquipo.Api.Modules.Equipo.Domain;
 
 // Clave de negocio compuesta (persona_id, aplicacion_id), igual que la tabla.

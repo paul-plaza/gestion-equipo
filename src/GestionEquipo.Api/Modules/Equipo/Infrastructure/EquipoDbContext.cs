@@ -10,6 +10,9 @@ public class EquipoDbContext(DbContextOptions<EquipoDbContext> options) : DbCont
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("teamhub");
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(EquipoDbContext).Assembly);
+        // Filtrado por namespace: EquipoDbContext y ProyectosDbContext comparten assembly,
+        // así que sin este filtro cada contexto también mapearía las configuraciones del otro módulo.
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(EquipoDbContext).Assembly,
+            t => t.Namespace?.StartsWith("GestionEquipo.Api.Modules.Equipo.") == true);
     }
 }
