@@ -1,0 +1,12 @@
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/bin/Debug/net10.0/GestionEquipo.ServiceDefaults.deps.json
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/bin/Debug/net10.0/GestionEquipo.ServiceDefaults.dll
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/bin/Debug/net10.0/GestionEquipo.ServiceDefaults.pdb
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/obj/Debug/net10.0/GestionEquipo.ServiceDefaults.csproj.AssemblyReference.cache
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/obj/Debug/net10.0/GestionEquipo.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/obj/Debug/net10.0/GestionEquipo.ServiceDefaults.AssemblyInfoInputs.cache
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/obj/Debug/net10.0/GestionEquipo.ServiceDefaults.AssemblyInfo.cs
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/obj/Debug/net10.0/GestionEquipo.ServiceDefaults.csproj.CoreCompileInputs.cache
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/obj/Debug/net10.0/GestionEquipo.ServiceDefaults.dll
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/obj/Debug/net10.0/refint/GestionEquipo.ServiceDefaults.dll
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/obj/Debug/net10.0/GestionEquipo.ServiceDefaults.pdb
+/Volumes/D/proyectos/gestion-equipo/src/GestionEquipo.ServiceDefaults/obj/Debug/net10.0/ref/GestionEquipo.ServiceDefaults.dll

@@ -1,0 +1,599 @@
+@if (detail(); as p) {
+  <button class="text-button back" (click)="closeDetail()">
+    <span class="icon">arrow_back</span>Proyectos
+  </button>
+  <section class="panel project-summary">
+    <div>
+      <div class="project-code">
+        PRJ-{{ p['id'] }} <span [class]="'badge ' + tone(p)">{{ status(p) }}</span>
+      </div>
+      <h1>{{ p['nombre'] }}</h1>
+      <p class="muted">
+        {{ date(p['fecha_inicio']) }} – {{ date(p['fecha_fin']) }} · {{ peopleCount(p) }} personas
+      </p>
+    </div>
+    <div class="heading-actions">
+      @if (canManage()) {
+        <button class="secondary" (click)="edit(p)">
+          <span class="icon">edit</span>Editar proyecto
+        </button>
+      }
+      @if (safeUrl(p); as url) {
+        <a class="primary" [href]="url" target="_blank" rel="noopener"
+          >Abrir tablero en Azure DevOps <span class="icon">open_in_new</span></a
+        >
+      }
+    </div>
+  </section>
+  @if (p['atrasado'] || overdue(p)) {
+    <div class="feedback">
+      <span class="icon">warning</span
+      >{{
+        p['atrasado']
+          ? p['atrasado_motivo']
+          : 'La fecha de fin ya pasó. Revisa el estado del proyecto.'
+      }}
+    </div>
+  }
+  <div class="project-metrics">
+    <section class="panel metric">
+      <h2>Fechas y planificación</h2>
+      <dl>
+        <div>
+          <dt>Inicio</dt>
+          <dd>{{ date(p['fecha_inicio']) }}</dd>
+        </div>
+        <div>
+          <dt>Fin previsto</dt>
+          <dd>{{ date(p['fecha_fin']) }}</dd>
+        </div>
+      </dl>
+      <div class="bar-label">
+        <span>Tiempo transcurrido</span><strong>{{ elapsed(p) }}%</strong>
+      </div>
+      <div class="progress-track"><span [style.width.%]="elapsed(p)"></span></div>
+      <small class="muted">Porcentaje del calendario; el avance real no está registrado.</small>
+    </section>
+    <section class="panel metric">
+      <h2>Presupuesto</h2>
+      <dl>
+        <div>
+          <dt>Costo total</dt>
+          <dd>{{ p['costo_total'] | currency: 'USD' : 'symbol' : '1.0-0' }}</dd>
+        </div>
+        <div>
+          <dt>ROM · costo máximo</dt>
+          <dd>{{ p['rom'] | currency: 'USD' : 'symbol' : '1.0-0' }}</dd>
+        </div>
+      </dl>
+      <div class="bar-label">
+        <span>Costo / ROM</span
+        ><strong>{{ budget(p) === null ? 'Sin ROM' : (budget(p) | number: '1.0-0') + '%' }}</strong>
+      </div>
+      <div class="progress-track" [class.over-budget]="(budget(p) ?? 0) > 100">
+        <span [style.width.%]="budget(p) === null ? 0 : budget(p)! > 100 ? 100 : budget(p)"></span>
+      </div>
+    </section>
+  </div>
+  <section class="panel">
+    <header class="panel-heading">
+      <div>
+        <h2>
+          Equipo asignado <span class="muted">· {{ peopleCount(p) }} personas</span>
+        </h2>
+        <p>Roles, dedicación y períodos de participación</p>
+      </div>
+      @if (canManage()) {
+        <button class="secondary" (click)="edit(p)">
+          <span class="icon">group_add</span>Gestionar equipo
+        </button>
+      }
+    </header>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Persona</th>
+            <th>Rol</th>
+            <th>Dedicación</th>
+            <th>Horas / mes</th>
+            <th>Presupuesto de horas</th>
+            <th>Período</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (m of members(p); track m['id']) {
+            <tr>
+              <td>
+                <div class="person">
+                  <span class="avatar light">{{ initials(m['nombre']) }}</span
+                  ><button type="button" class="text-button" (click)="navigate.emit({module:'equipo',id:m['persona_id']})">{{ m['nombre'] }}</button>
+                </div>
+              </td>
+              <td>{{ role(m['rol_proyecto']) }}</td>
+              <td>{{ m['porcentaje'] }}%</td>
+              <td>{{ m['horas_mensuales'] | number }} h</td>
+              <td>
+                {{
+                  m['horas_presupuestadas'] === null
+                    ? 'Sin definir'
+                    : m['horas_presupuestadas'] + ' h'
+                }}
+              </td>
+              <td>{{ date(m['fecha_inicio']) }} – {{ date(m['fecha_fin']) }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6">
+                <div class="empty small">
+                  <h3>Aún no hay personas asignadas</h3>
+                  <p>Agrega integrantes desde Gestionar equipo.</p>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="panel">
+    <header class="panel-heading">
+      <h2>
+        Aplicaciones <span class="muted">· {{ apps(p).length }}</span>
+      </h2><button class="text-button" (click)="navigate.emit({module:'proyectos',id:p['id'],tab:'proyecto_aplicacion'})">Gestionar aplicaciones <span class="icon">arrow_forward</span></button>
+    </header>
+    @for (a of apps(p); track a['id']) {
+      <div class="application">
+        <span class="icon">apps</span><strong>{{ a['nombre'] }}</strong
+        ><span class="muted">Inicio de trabajo · {{ date(a['fecha_inicio_trabajo']) }}</span>
+      </div>
+    } @empty {
+      <div class="empty small">
+        <p>Sin aplicaciones vinculadas. Puedes agregarlas en la pestaña Aplicaciones.</p>
+      </div>
+    }
+  </section>
+} @else {
+  <header class="projects-heading">
+    <div>
+      <h1>Proyectos</h1>
+      <p>
+        {{ projects().length }} proyectos · {{ count('en_curso') }} en curso ·
+        {{ count('atrasado') }} atrasados
+      </p>
+    </div>
+    <div class="heading-actions">
+      <div class="view-switch" aria-label="Vista de proyectos">
+        <button
+          [class.selected]="view() === 'cards'"
+          [attr.aria-pressed]="view() === 'cards'"
+          (click)="view.set('cards')"
+        >
+          <span class="icon">grid_view</span>Tarjetas</button
+        ><button
+          [class.selected]="view() === 'gantt'"
+          [attr.aria-pressed]="view() === 'gantt'"
+          (click)="view.set('gantt')"
+        >
+          <span class="icon">view_timeline</span>Gantt
+        </button>
+      </div>
+      @if (canManage()) {
+        <button class="primary" (click)="edit()">
+          <span class="icon">add</span>Nuevo proyecto
+        </button>
+      }
+    </div>
+  </header>
+  <div class="project-filters">
+    <div class="filter-chips">
+      @for (f of filters; track f[0]) {
+        <button
+          [class.selected]="filter() === f[0]"
+          [attr.aria-pressed]="filter() === f[0]"
+          (click)="filter.set(f[0])"
+        >
+          {{ f[1] }} <span>{{ count(f[0]) }}</span>
+        </button>
+      }
+    </div>
+    <label class="search"
+      ><span class="icon">search</span
+      ><input
+        aria-label="Buscar proyectos"
+        placeholder="Buscar proyecto…"
+        [ngModel]="query()"
+        (ngModelChange)="query.set($event)"
+    /></label>
+  </div>
+  @if (loading()) {
+    <div class="loading" role="status"><span class="spinner"></span>Cargando proyectos…</div>
+  } @else if (!visible().length) {
+    <section class="panel empty">
+      <span class="icon">folder_open</span>
+      <h3>
+        {{
+          projects().length ? 'No encontramos coincidencias' : 'Tu próximo proyecto empieza aquí'
+        }}
+      </h3>
+      <p>
+        {{
+          projects().length
+            ? 'Prueba con otro filtro o nombre.'
+            : 'Crea un proyecto y organiza su equipo.'
+        }}
+      </p>
+    </section>
+  } @else if (view() === 'cards') {
+    <div class="projects-grid">
+      @for (p of visible(); track p['id']) {
+        <button class="project-card" (click)="openDetail(p)">
+          <div class="card-title">
+            <div>
+              <span class="project-code">PRJ-{{ p['id'] }}</span>
+              <h2>{{ p['nombre'] }}</h2>
+            </div>
+            <span [class]="'badge ' + tone(p)">{{ status(p) }}</span>
+          </div>
+          <div>
+            <div class="bar-label">
+              <span>Tiempo transcurrido</span><strong>{{ elapsed(p) }}%</strong>
+            </div>
+            <div class="progress-track" [class.late]="p['atrasado']">
+              <span [style.width.%]="elapsed(p)"></span>
+            </div>
+          </div>
+          <div class="card-facts">
+            <div>
+              <span>Fechas</span
+              ><strong>{{ date(p['fecha_inicio']) }} – {{ date(p['fecha_fin']) }}</strong>
+            </div>
+            <div>
+              <span>Costo / ROM</span
+              ><strong [class.danger-text]="(budget(p) ?? 0) > 100"
+                >{{ p['costo_total'] | currency: 'USD' : 'symbol' : '1.0-0' }} ·
+                {{ budget(p) === null ? 'Sin ROM' : (budget(p) | number: '1.0-0') + '%' }}</strong
+              >
+            </div>
+          </div>
+          <footer>
+            <div class="team-avatars">
+              @for (m of avatars(p); track m['persona_id']) {
+                <span class="avatar light" [title]="m['nombre']">{{ initials(m['nombre']) }}</span>
+              }
+              <span>{{ peopleCount(p) }} personas</span>
+            </div>
+            <span class="app-count"><span class="icon">apps</span>{{ apps(p).length }} apps</span>
+          </footer>
+          @if (p['atrasado'] || overdue(p)) {
+            <div class="card-alert">
+              <span class="icon">warning</span
+              >{{
+                p['atrasado']
+                  ? 'Proyecto atrasado · revisar planificación'
+                  : 'Fecha de fin vencida · revisar estado'
+              }}
+            </div>
+          }
+        </button>
+      }
+    </div>
+  } @else {
+    <section class="panel">
+      <header class="panel-heading">
+        <div>
+          <h2>Vista Gantt anual · {{ year }}</h2>
+          <p>
+            Selecciona un proyecto para abrir su ficha · las barras representan fechas planificadas
+          </p>
+        </div>
+        <label class="year-filter"
+          >Año <input type="number" min="1900" max="9998" [(ngModel)]="year"
+        /></label>
+      </header>
+      <div class="timeline-scroll">
+        <div class="timeline-head">
+          <span>PROYECTO</span>
+          <div>
+            @for (m of months; track m) {
+              <span>{{ m }}</span>
+            }
+          </div>
+        </div>
+        @for (p of visible(); track p['id']) {
+          @if (inYear(p)) {
+            <button class="timeline-row gantt-row" (click)="openDetail(p)">
+              <div>
+                <strong>{{ p['nombre'] }}</strong
+                ><small>{{ date(p['fecha_inicio']) }} – {{ date(p['fecha_fin']) }}</small
+                ><span [class]="'badge ' + tone(p)">{{ status(p) }}</span>
+              </div>
+              <div class="timeline-track">
+                <span
+                  class="timeline-bar"
+                  [class.late]="p['atrasado']"
+                  [style.left.%]="left(p['fecha_inicio'])"
+                  [style.width.%]="width(p)"
+                ></span>
+              </div>
+            </button>
+          }
+        }
+      </div>
+    </section>
+  }
+}
+@if (editing()) {
+  <div class="dialog-backdrop">
+    <section
+      class="dialog project-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-title"
+      cdkTrapFocus
+      [cdkTrapFocusAutoCapture]="true"
+    >
+      <header class="dialog-header">
+        <div>
+          <span class="eyebrow">PROYECTOS</span>
+          <h2 id="project-title">{{ form['id'] ? 'Editar proyecto' : 'Nuevo proyecto' }}</h2>
+          <p class="muted">Define el proyecto y las personas que van a participar.</p>
+        </div>
+        <button
+          class="icon-button"
+          aria-label="Cerrar diálogo"
+          (click)="close()"
+          [disabled]="busy()"
+        >
+          <span class="icon">close</span>
+        </button>
+      </header>
+      @if (error()) {
+        <div class="feedback error" role="alert">{{ error() }}</div>
+      }
+      <form #projectForm="ngForm" (ngSubmit)="save()">
+        <fieldset [disabled]="busy() || directoryLoading()">
+          <div class="form-grid">
+            <div class="wide section-title">
+              <span class="section-number">1</span>
+              <div>
+                <h3>Información del proyecto</h3>
+                <p>Fechas, responsable y presupuesto</p>
+              </div>
+            </div>
+            <label class="wide"
+              ><span>Nombre del proyecto <em>*</em></span
+              ><input
+                name="nombre"
+                [(ngModel)]="form['nombre']"
+                required
+                placeholder="Ej. Portal de clientes" /></label
+            ><label
+              ><span>Product Owner</span
+              ><select name="product_owner_id" [(ngModel)]="form['product_owner_id']">
+                <option [ngValue]="null">Selecciona un responsable</option>
+                @for (o of owners; track o.id) {
+                  <option [ngValue]="o.id">{{ o.label }}</option>
+                }
+              </select></label
+            ><label
+              ><span>Tablero de Azure DevOps</span
+              ><input
+                type="url"
+                name="url"
+                [(ngModel)]="form['url_tablero_devops']"
+                placeholder="https://dev.azure.com/…" /></label
+            ><label
+              ><span>Fecha de inicio <em>*</em></span
+              ><input
+                type="date"
+                name="fecha_inicio"
+                [(ngModel)]="form['fecha_inicio']"
+                required /></label
+            ><label
+              ><span>Fecha de fin <em>*</em></span
+              ><input
+                type="date"
+                name="fecha_fin"
+                [(ngModel)]="form['fecha_fin']"
+                [min]="form['fecha_inicio']"
+                required /></label
+            ><label
+              ><span>Costo total (USD)</span
+              ><input
+                type="number"
+                min="0"
+                step="0.01"
+                name="costo"
+                [(ngModel)]="form['costo_total']"
+                required /></label
+            ><label
+              ><span>ROM · costo máximo (USD)</span
+              ><input
+                type="number"
+                min="0"
+                step="0.01"
+                name="rom"
+                [(ngModel)]="form['rom']"
+                required /></label
+            ><label
+              ><span>Estado</span
+              ><select name="estado" [(ngModel)]="form['estado']">
+                <option value="por_iniciar">Por iniciar</option>
+                <option value="en_curso">En curso</option>
+                <option value="finalizado">Finalizado</option>
+              </select></label
+            ><label
+              ><span>Seguimiento</span
+              ><select name="atrasado" [(ngModel)]="form['atrasado']">
+                <option [ngValue]="false">Sin atraso marcado</option>
+                <option [ngValue]="true">Atrasado</option>
+              </select></label
+            >
+            @if (form['atrasado']) {
+              <label
+                ><span>Atrasado desde <em>*</em></span
+                ><input
+                  type="date"
+                  name="atrasado_desde"
+                  [(ngModel)]="form['atrasado_desde']"
+                  required /></label
+              ><label
+                ><span>Motivo del atraso <em>*</em></span
+                ><textarea
+                  name="motivo"
+                  [(ngModel)]="form['atrasado_motivo']"
+                  required
+                  rows="2"
+                ></textarea>
+              </label>
+            }
+            @if (overdue(form)) {
+              <div class="wide info-note">
+                <span class="icon">warning</span>La fecha de fin ya pasó. Revisa el estado o
+                registra el atraso con su motivo.
+              </div>
+            }
+            <div class="wide section-title team-heading">
+              <span class="section-number">2</span>
+              <div>
+                <h3>Equipo del proyecto</h3>
+                <p>
+                  Agrega varias personas, con su rol y dedicación. Los externos requieren Product
+                  Owner.
+                </p>
+              </div>
+              <button type="button" class="secondary" (click)="addMember()">
+                <span class="icon">person_add</span>Agregar persona
+              </button>
+            </div>
+            @for (m of team; track m; let i = $index) {
+              <section class="wide member-editor">
+                <header>
+                  <strong>Integrante {{ i + 1 }}</strong>
+                  @if (!m['id']) {
+                    <button
+                      type="button"
+                      class="icon-button"
+                      [attr.aria-label]="'Quitar integrante ' + (i + 1)"
+                      (click)="team.splice(i, 1)"
+                    >
+                      <span class="icon">close</span>
+                    </button>
+                  } @else {
+                    <small class="muted"
+                      >Asignación registrada · ajusta la fecha de fin para cerrar su
+                      participación</small
+                    >
+                  }
+                </header>
+                <div class="member-fields">
+                  <label class="member-person"
+                    ><span>Persona <em>*</em></span
+                    ><select
+                      [name]="'persona_' + i"
+                      [(ngModel)]="m['persona_id']"
+                      required
+                      [disabled]="!!m['id']"
+                    >
+                      <option [ngValue]="null">Selecciona una persona</option>
+                      @for (o of personOptions(m); track o.id) {
+                        <option [ngValue]="o.id">{{ o.label }}</option>
+                      }
+                    </select></label
+                  ><label
+                    ><span>Rol <em>*</em></span
+                    ><select
+                      [name]="'rol_' + i"
+                      [(ngModel)]="m['rol_proyecto']"
+                      (ngModelChange)="changeRole(m)"
+                    >
+                      @for (r of roles; track r[0]) {
+                        <option [value]="r[0]">{{ r[1] }}</option>
+                      }
+                    </select></label
+                  ><label
+                    ><span>Dedicación (%) <em>*</em></span>
+                    @if (m['rol_proyecto'] === 'arquitecto') {
+                      <input
+                        type="number"
+                        min="25"
+                        max="100"
+                        step="1"
+                        [name]="'dedicacion_' + i"
+                        [(ngModel)]="m['porcentaje']"
+                        required
+                      />
+                    } @else {
+                      <select [name]="'dedicacion_' + i" [(ngModel)]="m['porcentaje']">
+                        @if (m['rol_proyecto'] === 'scrum_master') {
+                          <option [ngValue]="25">25%</option>
+                        }
+                        <option [ngValue]="50">50%</option>
+                        <option [ngValue]="100">100%</option>
+                      </select>
+                    }</label
+                  ><label
+                    ><span>Desde <em>*</em></span
+                    ><input
+                      type="date"
+                      [name]="'desde_' + i"
+                      [(ngModel)]="m['fecha_inicio']"
+                      required /></label
+                  ><label
+                    ><span>Hasta <em>*</em></span
+                    ><input
+                      type="date"
+                      [name]="'hasta_' + i"
+                      [(ngModel)]="m['fecha_fin']"
+                      [min]="m['fecha_inicio']"
+                      required /></label
+                  ><label
+                    ><span>Horas / mes</span
+                    ><input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      [name]="'horas_' + i"
+                      [(ngModel)]="m['horas_mensuales']"
+                      placeholder="Según dedicación" /></label
+                  ><label
+                    ><span>Presupuesto de horas</span
+                    ><input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      [name]="'presupuesto_' + i"
+                      [(ngModel)]="m['horas_presupuestadas']"
+                      placeholder="Opcional"
+                  /></label>
+                </div>
+              </section>
+            } @empty {
+              <div class="wide team-empty">
+                <span class="icon">groups</span>
+                <h3>Forma el equipo de este proyecto</h3>
+                <p>Puedes agregar desarrolladores, Scrum Masters y arquitectos.</p>
+                <button type="button" class="text-button" (click)="addMember()">
+                  Agregar primera persona <span class="icon">arrow_forward</span>
+                </button>
+              </div>
+            }
+          </div>
+        </fieldset>
+        <footer class="dialog-footer">
+          <span class="muted">{{ team.length }} asignaciones · * Campos obligatorios</span
+          ><button type="button" class="secondary" (click)="close()" [disabled]="busy()">
+            Cancelar</button
+          ><button
+            class="primary"
+            type="submit"
+            [disabled]="busy() || directoryLoading() || projectForm.invalid"
+          >
+            {{ busy() ? 'Guardando…' : form['id'] ? 'Guardar cambios' : 'Crear proyecto' }}
+          </button>
+        </footer>
+      </form>
+    </section>
+  </div>
+}

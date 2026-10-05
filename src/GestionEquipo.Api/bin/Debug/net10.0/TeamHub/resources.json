@@ -1,0 +1,2358 @@
+[
+  {
+    "name": "parametro_sistema",
+    "label": "Parámetros del sistema",
+    "key": "clave",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "clave",
+        "label": "Clave",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "valor",
+        "label": "Valor",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "descripcion",
+        "label": "Descripción",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "config_oficina",
+    "label": "Cupos por piso",
+    "key": "piso",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "piso",
+        "label": "Piso",
+        "type": "smallint",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "cupo",
+        "label": "Cupo",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "proveedor",
+    "label": "Proveedores",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "activo",
+        "label": "Activo",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "product_owner",
+    "label": "Product Owners",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombres",
+        "label": "Nombres",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "apellidos",
+        "label": "Apellidos",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "correo",
+        "label": "Correo",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "celular",
+        "label": "Celular",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "cargo",
+        "label": "Cargo",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "area",
+        "label": "Área",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "activo",
+        "label": "Activo",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "cargo",
+    "label": "Cargos",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "activo",
+        "label": "Activo",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "area",
+    "label": "Áreas",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "activo",
+        "label": "Activo",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "rol",
+    "label": "Roles del equipo",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "activo",
+        "label": "Activo",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "categoria_tecnologia",
+    "label": "Categorías de tecnología",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "tecnologia",
+    "label": "Tecnologías",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "categoria_id",
+        "label": "Categoría",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "categoria_tecnologia",
+        "readonly": false
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "activo",
+        "label": "Activo",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "nivel_dominio",
+    "label": "Niveles de dominio",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "orden",
+        "label": "Orden",
+        "type": "smallint",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "aplicacion",
+    "label": "Aplicaciones",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "devops_proyecto",
+        "label": "Devops proyecto",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "devops_repositorio",
+        "label": "Devops repositorio",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "devops_url_repositorio",
+        "label": "URL del repositorio",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "activo",
+        "label": "Activo",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "persona",
+    "label": "Personas",
+    "key": "id",
+    "personal": true,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombres",
+        "label": "Nombres",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "apellidos",
+        "label": "Apellidos",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "cedula",
+        "label": "Cédula",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "correo_institucional",
+        "label": "Correo institucional",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "celular",
+        "label": "Celular",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "tipo",
+        "label": "Tipo",
+        "type": "text",
+        "required": true,
+        "options": [
+          "interno",
+          "externo"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "rol_id",
+        "label": "Rol del equipo",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "rol",
+        "readonly": false
+      },
+      {
+        "name": "area_id",
+        "label": "Área",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "area",
+        "readonly": false
+      },
+      {
+        "name": "cargo_id",
+        "label": "Cargo",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "cargo",
+        "readonly": false
+      },
+      {
+        "name": "fecha_cumpleanos",
+        "label": "Fecha de nacimiento",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "piso",
+        "label": "Piso",
+        "type": "smallint",
+        "required": true,
+        "options": [],
+        "reference": "config_oficina",
+        "readonly": false
+      },
+      {
+        "name": "jefe_directo_id",
+        "label": "Jefe directo",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "rol_app",
+        "label": "Rol en la aplicación",
+        "type": "text",
+        "required": false,
+        "options": [
+          "jefe_desarrollo",
+          "jefe_area",
+          "miembro"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "entra_object_id",
+        "label": "Identificador de Entra ID (GUID)",
+        "type": "uuid",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "estado",
+        "label": "Estado",
+        "type": "text",
+        "required": false,
+        "options": [
+          "activo",
+          "inactivo"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "creado_en",
+        "label": "Creado en",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      }
+    ]
+  },
+  {
+    "name": "contrato_externo",
+    "label": "Contratos y renovaciones",
+    "key": "id",
+    "personal": true,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "proveedor_id",
+        "label": "Proveedor",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "proveedor",
+        "readonly": false
+      },
+      {
+        "name": "costo_hora",
+        "label": "Costo por hora",
+        "type": "numeric",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_inicio",
+        "label": "Fecha inicio",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_fin",
+        "label": "Fecha fin",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "es_renovacion",
+        "label": "Es renovacion",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "observacion",
+        "label": "Observación",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "persona_aplicacion",
+    "label": "Especialistas por aplicación",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "aplicacion_id",
+        "label": "Aplicación",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "aplicacion",
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "persona_tecnologia",
+    "label": "Conocimientos",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "tecnologia_id",
+        "label": "Tecnología",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "tecnologia",
+        "readonly": false
+      },
+      {
+        "name": "nivel_id",
+        "label": "Nivel de dominio",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "nivel_dominio",
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "proyecto",
+    "label": "Proyectos",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "url_tablero_devops",
+        "label": "Tablero de Azure DevOps",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "product_owner_id",
+        "label": "Product Owner",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "product_owner",
+        "readonly": false
+      },
+      {
+        "name": "fecha_inicio",
+        "label": "Fecha inicio",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_fin",
+        "label": "Fecha fin",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas_desarrollador",
+        "label": "Horas desarrollador",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas_scrum",
+        "label": "Horas scrum",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "costo_total",
+        "label": "Costo total",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "rom",
+        "label": "ROM",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "estado",
+        "label": "Estado",
+        "type": "text",
+        "required": false,
+        "options": [
+          "por_iniciar",
+          "en_curso",
+          "finalizado"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "atrasado",
+        "label": "Atrasado",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "atrasado_desde",
+        "label": "Atrasado desde",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "atrasado_motivo",
+        "label": "Motivo del atraso",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "creado_en",
+        "label": "Creado en",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      }
+    ]
+  },
+  {
+    "name": "asignacion",
+    "label": "Asignaciones",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "proyecto_id",
+        "label": "Proyecto",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "proyecto",
+        "readonly": false
+      },
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "rol_proyecto",
+        "label": "Rol proyecto",
+        "type": "text",
+        "required": true,
+        "options": [
+          "scrum_master",
+          "desarrollador",
+          "arquitecto"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "porcentaje",
+        "label": "Dedicación (%)",
+        "type": "smallint",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas_mensuales",
+        "label": "Horas mensuales",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas_presupuestadas",
+        "label": "Horas presupuestadas",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "reemplaza_asignacion_id",
+        "label": "Reemplaza a",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "asignacion",
+        "readonly": false
+      },
+      {
+        "name": "fecha_inicio",
+        "label": "Fecha inicio",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_fin",
+        "label": "Fecha fin",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "consumo_horas_proyecto",
+    "label": "Consumo mensual",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "proyecto_id",
+        "label": "Proyecto",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "proyecto",
+        "readonly": false
+      },
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "rol_proyecto",
+        "label": "Rol proyecto",
+        "type": "text",
+        "required": true,
+        "options": [
+          "scrum_master",
+          "desarrollador",
+          "arquitecto"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "mes",
+        "label": "Mes",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas",
+        "label": "Horas",
+        "type": "numeric",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "proyecto_aplicacion",
+    "label": "Aplicaciones del proyecto",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "proyecto_id",
+        "label": "Proyecto",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "proyecto",
+        "readonly": false
+      },
+      {
+        "name": "aplicacion_id",
+        "label": "Aplicación",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "aplicacion",
+        "readonly": false
+      },
+      {
+        "name": "fecha_inicio_trabajo",
+        "label": "Fecha inicio trabajo",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "rfc",
+    "label": "RFC",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "numero",
+        "label": "Número",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "ambiente",
+        "label": "Ambiente",
+        "type": "text",
+        "required": true,
+        "options": [
+          "TEST",
+          "PROD"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "es_nocturno",
+        "label": "Pase nocturno",
+        "type": "boolean",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "observacion",
+        "label": "Observación",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "pase",
+    "label": "Pases TEST / PROD",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "proyecto_aplicacion_id",
+        "label": "Aplicación del proyecto",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "proyecto_aplicacion",
+        "readonly": false
+      },
+      {
+        "name": "rfc_id",
+        "label": "RFC",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "rfc",
+        "readonly": false
+      },
+      {
+        "name": "ambiente",
+        "label": "Ambiente",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha",
+        "label": "Fecha",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "tipo",
+        "label": "Tipo",
+        "type": "text",
+        "required": false,
+        "options": [
+          "normal",
+          "correccion"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "pase_corregido_id",
+        "label": "Pase que corrige",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "pase",
+        "readonly": false
+      },
+      {
+        "name": "motivo_correccion",
+        "label": "Motivo correccion",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "hora_extra",
+    "label": "Horas extra",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "fecha",
+        "label": "Fecha",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "actividad",
+        "label": "Actividad",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas",
+        "label": "Horas",
+        "type": "numeric",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "proyecto_id",
+        "label": "Proyecto",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "proyecto",
+        "readonly": false
+      },
+      {
+        "name": "rfc_id",
+        "label": "RFC",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "rfc",
+        "readonly": false
+      },
+      {
+        "name": "estado",
+        "label": "Estado",
+        "type": "text",
+        "required": false,
+        "options": [
+          "pendiente",
+          "aprobada",
+          "rechazada"
+        ],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "aprobado_por",
+        "label": "Aprobado por",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "persona",
+        "readonly": true
+      },
+      {
+        "name": "fecha_resolucion",
+        "label": "Fecha resolucion",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "comentario",
+        "label": "Comentario",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "creado_en",
+        "label": "Creado en",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      }
+    ]
+  },
+  {
+    "name": "evidencia_hora_extra",
+    "label": "Evidencias",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "hora_extra_id",
+        "label": "Registro de horas extra",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "hora_extra",
+        "readonly": false
+      },
+      {
+        "name": "nombre_archivo",
+        "label": "Nombre archivo",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "ruta_almacenamiento",
+        "label": "Ruta almacenamiento",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "tipo_contenido",
+        "label": "Tipo contenido",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "tamano_bytes",
+        "label": "Tamaño",
+        "type": "bigint",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "subido_en",
+        "label": "Subido en",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      }
+    ]
+  },
+  {
+    "name": "recuperacion_hora",
+    "label": "Recuperación de horas",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "hora_extra_id",
+        "label": "Registro de horas extra",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "hora_extra",
+        "readonly": false
+      },
+      {
+        "name": "fecha",
+        "label": "Fecha",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas",
+        "label": "Horas",
+        "type": "numeric",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "observacion",
+        "label": "Observación",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "registrado_por",
+        "label": "Registrado por",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "persona",
+        "readonly": true
+      },
+      {
+        "name": "creado_en",
+        "label": "Creado en",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      }
+    ]
+  },
+  {
+    "name": "ausencia",
+    "label": "Permisos y vacaciones",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "tipo",
+        "label": "Tipo",
+        "type": "text",
+        "required": true,
+        "options": [
+          "permiso",
+          "salida_temprana",
+          "vacaciones",
+          "cumpleanos"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_inicio",
+        "label": "Fecha inicio",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_fin",
+        "label": "Fecha fin",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "hora_salida",
+        "label": "Hora salida",
+        "type": "time",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "motivo",
+        "label": "Motivo",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "rfc_id",
+        "label": "RFC",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "rfc",
+        "readonly": false
+      },
+      {
+        "name": "estado",
+        "label": "Estado",
+        "type": "text",
+        "required": false,
+        "options": [
+          "pendiente",
+          "aprobado",
+          "rechazado",
+          "cancelado"
+        ],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "aprobado_por",
+        "label": "Aprobado por",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "persona",
+        "readonly": true
+      },
+      {
+        "name": "fecha_resolucion",
+        "label": "Fecha resolucion",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "creado_en",
+        "label": "Creado en",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      }
+    ]
+  },
+  {
+    "name": "logro",
+    "label": "Logros",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "titulo",
+        "label": "Titulo",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "descripcion",
+        "label": "Descripción",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "impacto",
+        "label": "Impacto",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "evidencia_url",
+        "label": "Enlace de evidencia",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha",
+        "label": "Fecha",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "registrado_por",
+        "label": "Registrado por",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "persona",
+        "readonly": true
+      },
+      {
+        "name": "creado_en",
+        "label": "Creado en",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      }
+    ]
+  },
+  {
+    "name": "teletrabajo_plan",
+    "label": "Plan de teletrabajo",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "fecha",
+        "label": "Fecha",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "modalidad",
+        "label": "Modalidad",
+        "type": "text",
+        "required": true,
+        "options": [
+          "oficina",
+          "teletrabajo"
+        ],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "teletrabajo_ampliacion",
+    "label": "Ampliaciones temporales",
+    "key": "id",
+    "personal": true,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "fecha_inicio",
+        "label": "Fecha inicio",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_fin",
+        "label": "Fecha fin",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "dia_semana",
+        "label": "Dia semana",
+        "type": "smallint",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "motivo",
+        "label": "Motivo",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "aprobado_por",
+        "label": "Aprobado por",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": true
+      },
+      {
+        "name": "creado_en",
+        "label": "Creado en",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      }
+    ]
+  },
+  {
+    "name": "teletrabajo_ampliacion_logro",
+    "label": "Logros de la ampliación",
+    "key": "id",
+    "personal": true,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "ampliacion_id",
+        "label": "Ampliación",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "teletrabajo_ampliacion",
+        "readonly": false
+      },
+      {
+        "name": "logro_id",
+        "label": "Logro",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "logro",
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "objetivo",
+    "label": "Objetivos anuales",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "anio",
+        "label": "Año",
+        "type": "smallint",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "numero",
+        "label": "Número",
+        "type": "smallint",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "alcance",
+        "label": "Alcance",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "detalle",
+        "label": "Detalle",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "avance",
+        "label": "Avance (%)",
+        "type": "smallint",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_seguimiento",
+        "label": "Fecha seguimiento",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "observaciones",
+        "label": "Observaciones",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "evolutivo_hora",
+    "label": "Horas de evolutivos",
+    "key": "id",
+    "personal": true,
+    "managerOnly": false,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "persona_id",
+        "label": "Persona",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "fecha",
+        "label": "Fecha",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "aplicacion_id",
+        "label": "Aplicación",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "aplicacion",
+        "readonly": false
+      },
+      {
+        "name": "actividad",
+        "label": "Actividad",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "horas",
+        "label": "Horas",
+        "type": "numeric",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "creado_en",
+        "label": "Creado en",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      }
+    ]
+  },
+  {
+    "name": "indicador_metrica",
+    "label": "Indicadores",
+    "key": "codigo",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "codigo",
+        "label": "Codigo",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "dimension",
+        "label": "Dimension",
+        "type": "text",
+        "required": true,
+        "options": [
+          "entrega",
+          "velocidad",
+          "capacidad",
+          "madurez"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "objetivo",
+        "label": "Objetivo",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "frecuencia",
+        "label": "Frecuencia",
+        "type": "text",
+        "required": true,
+        "options": [
+          "semanal",
+          "por_sprint",
+          "mensual",
+          "trimestral"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "por_que_se_mide",
+        "label": "Por que se mide",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "meta_valor",
+        "label": "Meta valor",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "unidad",
+        "label": "Unidad",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "sprint_velocidad",
+    "label": "Velocidad por sprint",
+    "key": "id",
+    "personal": false,
+    "managerOnly": true,
+    "readonly": false,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "proyecto_id",
+        "label": "Proyecto",
+        "type": "integer",
+        "required": true,
+        "options": [],
+        "reference": "proyecto",
+        "readonly": false
+      },
+      {
+        "name": "nombre",
+        "label": "Nombre",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_inicio",
+        "label": "Fecha inicio",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "fecha_fin",
+        "label": "Fecha fin",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "puntos_comprometidos",
+        "label": "Puntos comprometidos",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "puntos_completados",
+        "label": "Puntos completados",
+        "type": "numeric",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "origen",
+        "label": "Origen",
+        "type": "text",
+        "required": false,
+        "options": [
+          "manual",
+          "azure_devops"
+        ],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  },
+  {
+    "name": "auditoria",
+    "label": "Auditoría",
+    "key": "id",
+    "personal": false,
+    "managerOnly": false,
+    "readonly": true,
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "type": "bigint",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": true
+      },
+      {
+        "name": "tabla",
+        "label": "Tabla",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "registro_id",
+        "label": "Registro id",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "accion",
+        "label": "Accion",
+        "type": "text",
+        "required": true,
+        "options": [
+          "insert",
+          "update",
+          "delete",
+          "aprobacion"
+        ],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "usuario_id",
+        "label": "Usuario id",
+        "type": "integer",
+        "required": false,
+        "options": [],
+        "reference": "persona",
+        "readonly": false
+      },
+      {
+        "name": "fecha",
+        "label": "Fecha",
+        "type": "timestamptz",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      },
+      {
+        "name": "datos",
+        "label": "Datos",
+        "type": "jsonb",
+        "required": false,
+        "options": [],
+        "reference": null,
+        "readonly": false
+      }
+    ]
+  }
+]

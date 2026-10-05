@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GestionEquipo.Api/GestionEquipo.Api.csproj" />
+    <Project Path="src/GestionEquipo.AppHost/GestionEquipo.AppHost.csproj" />
+    <Project Path="src/GestionEquipo.ServiceDefaults/GestionEquipo.ServiceDefaults.csproj" />
+  </Folder>
+</Solution>

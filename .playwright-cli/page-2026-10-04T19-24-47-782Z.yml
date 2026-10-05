@@ -1,0 +1,486 @@
+- generic [ref=e4]:
+  - complementary [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: TH
+      - generic [ref=e8]:
+        - generic [ref=e9]: TeamHub Dev
+        - generic [ref=e10]: Gestión del equipo de desarrollo
+    - navigation [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]: General
+        - button "space_dashboard Dashboard general" [ref=e14] [cursor=pointer]:
+          - generic [ref=e16]: space_dashboard
+          - generic [ref=e17]: Dashboard general
+      - generic [ref=e18]:
+        - generic [ref=e19]: Personas y proyectos
+        - button "groups Equipo" [active] [ref=e20] [cursor=pointer]:
+          - generic [ref=e22]: groups
+          - generic [ref=e23]: Equipo
+        - button "folder_open Proyectos" [ref=e24] [cursor=pointer]:
+          - generic [ref=e26]: folder_open
+          - generic [ref=e27]: Proyectos
+        - button "view_timeline Asignaciones y capacidad" [ref=e28] [cursor=pointer]:
+          - generic [ref=e30]: view_timeline
+          - generic [ref=e31]: Asignaciones y capacidad
+      - generic [ref=e32]:
+        - generic [ref=e33]: Tiempo
+        - button "more_time Horas extra y recuperación 5" [ref=e34] [cursor=pointer]:
+          - generic [ref=e36]: more_time
+          - generic [ref=e37]: Horas extra y recuperación
+          - generic [ref=e38]: "5"
+        - button "event_available Permisos, vacaciones y cumpleaños 2" [ref=e40] [cursor=pointer]:
+          - generic [ref=e42]: event_available
+          - generic [ref=e43]: Permisos, vacaciones y cumpleaños
+          - generic [ref=e44]: "2"
+        - button "home_work Teletrabajo" [ref=e46] [cursor=pointer]:
+          - generic [ref=e48]: home_work
+          - generic [ref=e49]: Teletrabajo
+      - generic [ref=e50]:
+        - generic [ref=e51]: Desempeño
+        - button "emoji_events Logros y aportes" [ref=e52] [cursor=pointer]:
+          - generic [ref=e54]: emoji_events
+          - generic [ref=e55]: Logros y aportes
+        - button "flag Objetivos" [ref=e56] [cursor=pointer]:
+          - generic [ref=e58]: flag
+          - generic [ref=e59]: Objetivos
+        - button "build Evolutivos (300 h)" [ref=e60] [cursor=pointer]:
+          - generic [ref=e62]: build
+          - generic [ref=e63]: Evolutivos (300 h)
+        - button "monitoring Métricas (DORA)" [ref=e64] [cursor=pointer]:
+          - generic [ref=e66]: monitoring
+          - generic [ref=e67]: Métricas (DORA)
+        - button "psychology Conocimientos y habilidades" [ref=e68] [cursor=pointer]:
+          - generic [ref=e70]: psychology
+          - generic [ref=e71]: Conocimientos y habilidades
+    - button "left_panel_close Contraer menú" [ref=e73] [cursor=pointer]:
+      - generic [ref=e74]: left_panel_close
+      - generic [ref=e75]: Contraer menú
+  - generic [ref=e76]:
+    - banner [ref=e77]:
+      - generic [ref=e78]:
+        - generic [ref=e79]: search
+        - textbox "Buscar personas, proyectos, RFC, aplicaciones…" [ref=e80]
+        - generic [ref=e81]: Ctrl K
+      - button "notifications 4" [ref=e83] [cursor=pointer]:
+        - generic [ref=e84]: notifications
+        - generic [ref=e85]: "4"
+      - generic [ref=e87]:
+        - generic [ref=e88]: CM
+        - generic [ref=e89]:
+          - generic [ref=e90]: Carlos Mendoza
+          - generic [ref=e91]: Jefe de Desarrollo
+        - generic [ref=e92]: expand_more
+    - main [ref=e93]:
+      - generic [ref=e557]:
+        - generic [ref=e558]:
+          - heading "Equipo" [level=1] [ref=e559]
+          - generic [ref=e560]: 18 personas · 12 internos · 6 externos · 4 áreas
+        - generic [ref=e561]:
+          - button "download Exportar" [ref=e562] [cursor=pointer]:
+            - generic [ref=e563]: download
+            - text: Exportar
+          - button "person_add Agregar persona" [ref=e564] [cursor=pointer]:
+            - generic [ref=e565]: person_add
+            - text: Agregar persona
+      - generic [ref=e566]:
+        - generic [ref=e567]:
+          - generic [ref=e568]:
+            - generic [ref=e569]: search
+            - textbox "Nombre, cédula o correo" [ref=e570]
+          - generic [ref=e571]:
+            - text: Cargo
+            - combobox "Cargo" [ref=e572]:
+              - option [selected]
+              - option
+              - option
+              - option
+              - option
+              - option
+              - option
+              - option
+              - option
+              - option
+          - generic [ref=e573]:
+            - text: Área
+            - combobox "Área" [ref=e574]:
+              - option [selected]
+              - option
+              - option
+              - option
+              - option
+          - generic [ref=e575]:
+            - text: Proyecto
+            - combobox "Proyecto" [ref=e576]:
+              - option [selected]
+              - option
+              - option
+              - option
+              - option
+              - option
+              - option
+              - option
+          - generic [ref=e577]:
+            - button "Todos" [ref=e578] [cursor=pointer]
+            - button "Internos" [ref=e579] [cursor=pointer]
+            - button "Externos" [ref=e580] [cursor=pointer]
+          - generic [ref=e581]: 18 de 18
+        - table [ref=e583]:
+          - rowgroup [ref=e584]:
+            - row [ref=e585]:
+              - columnheader "Nombre" [ref=e586]
+              - columnheader "Rol" [ref=e587]
+              - columnheader "Área" [ref=e588]
+              - columnheader "Tipo" [ref=e589]
+              - columnheader "Proyecto(s) actual(es)" [ref=e590]
+              - columnheader "Fin de contrato" [ref=e591]
+              - columnheader "Estado" [ref=e592]
+              - columnheader [ref=e593]
+          - rowgroup [ref=e594]:
+            - row [ref=e595] [cursor=pointer]:
+              - cell "MA Martín Aguirre Jefe de Modernización" [ref=e596]:
+                - generic [ref=e597]:
+                  - generic [ref=e598]: MA
+                  - generic [ref=e600]:
+                    - generic [ref=e601]: Martín Aguirre
+                    - generic [ref=e602]: Jefe de Modernización
+              - cell "Jefe de área" [ref=e603]
+              - cell "Modernización" [ref=e604]
+              - cell "Interno" [ref=e605]
+              - cell "Portal Clientes 2.0 25% App Móvil Ventas 25%" [ref=e607]:
+                - generic [ref=e608]:
+                  - generic [ref=e609]:
+                    - generic [ref=e610]: Portal Clientes 2.0
+                    - generic [ref=e611]: 25%
+                  - generic [ref=e612]:
+                    - generic [ref=e613]: App Móvil Ventas
+                    - generic [ref=e614]: 25%
+              - cell "—" [ref=e615]
+              - cell "Activo" [ref=e616]
+              - cell "chevron_right" [ref=e620]
+            - row [ref=e621] [cursor=pointer]:
+              - cell "EC Elena Castro Jefa de Mantenimiento" [ref=e622]:
+                - generic [ref=e623]:
+                  - generic [ref=e624]: EC
+                  - generic [ref=e626]:
+                    - generic [ref=e627]: Elena Castro
+                    - generic [ref=e628]: Jefa de Mantenimiento
+              - cell "Jefe de área" [ref=e629]
+              - cell "Mantenimiento" [ref=e630]
+              - cell "Interno" [ref=e631]
+              - cell "Evolutivos Mantenimiento 30%" [ref=e633]:
+                - generic [ref=e635]:
+                  - generic [ref=e636]: Evolutivos Mantenimiento
+                  - generic [ref=e637]: 30%
+              - cell "—" [ref=e638]
+              - cell "Disponible 70%" [ref=e639]
+              - cell "chevron_right" [ref=e643]
+            - row [ref=e644] [cursor=pointer]:
+              - cell "FR Fernando Ruiz Líder de Desarrollo" [ref=e645]:
+                - generic [ref=e646]:
+                  - generic [ref=e647]: FR
+                  - generic [ref=e649]:
+                    - generic [ref=e650]: Fernando Ruiz
+                    - generic [ref=e651]: Líder de Desarrollo
+              - cell "Líder" [ref=e652]
+              - cell "Desarrollo" [ref=e653]
+              - cell "Interno" [ref=e654]
+              - cell "Core Pagos API 25% Motor de Reglas Crédito 25%" [ref=e656]:
+                - generic [ref=e657]:
+                  - generic [ref=e658]:
+                    - generic [ref=e659]: Core Pagos API
+                    - generic [ref=e660]: 25%
+                  - generic [ref=e661]:
+                    - generic [ref=e662]: Motor de Reglas Crédito
+                    - generic [ref=e663]: 25%
+              - cell "—" [ref=e664]
+              - cell "Activo" [ref=e665]
+              - cell "chevron_right" [ref=e669]
+            - row [ref=e670] [cursor=pointer]:
+              - cell "JA Jorge Almeida Jefe de Arquitectura" [ref=e671]:
+                - generic [ref=e672]:
+                  - generic [ref=e673]: JA
+                  - generic [ref=e675]:
+                    - generic [ref=e676]: Jorge Almeida
+                    - generic [ref=e677]: Jefe de Arquitectura
+              - cell "Arquitecto" [ref=e678]
+              - cell "Arquitectura" [ref=e679]
+              - cell "Interno" [ref=e680]
+              - cell "Migración Batch a Azure 50% Core Pagos API 25%" [ref=e682]:
+                - generic [ref=e683]:
+                  - generic [ref=e684]:
+                    - generic [ref=e685]: Migración Batch a Azure
+                    - generic [ref=e686]: 50%
+                  - generic [ref=e687]:
+                    - generic [ref=e688]: Core Pagos API
+                    - generic [ref=e689]: 25%
+              - cell "—" [ref=e690]
+              - cell "Asignación termina en 10 d" [ref=e691]
+              - cell "chevron_right" [ref=e695]
+            - row [ref=e696] [cursor=pointer]:
+              - cell "AS Andrea Salazar Scrum Master" [ref=e697]:
+                - generic [ref=e698]:
+                  - generic [ref=e699]: AS
+                  - generic [ref=e701]:
+                    - generic [ref=e702]: Andrea Salazar
+                    - generic [ref=e703]: Scrum Master
+              - cell "Scrum Master" [ref=e704]
+              - cell "Modernización" [ref=e705]
+              - cell "Interno" [ref=e706]
+              - cell "Portal Clientes 2.0 50% Onboarding Digital 50%" [ref=e708]:
+                - generic [ref=e709]:
+                  - generic [ref=e710]:
+                    - generic [ref=e711]: Portal Clientes 2.0
+                    - generic [ref=e712]: 50%
+                  - generic [ref=e713]:
+                    - generic [ref=e714]: Onboarding Digital
+                    - generic [ref=e715]: 50%
+              - cell "—" [ref=e716]
+              - cell "Asignación termina en 17 d" [ref=e717]
+              - cell "chevron_right" [ref=e721]
+            - row [ref=e722] [cursor=pointer]:
+              - cell "PR Pablo Ríos Scrum Master" [ref=e723]:
+                - generic [ref=e724]:
+                  - generic [ref=e725]: PR
+                  - generic [ref=e727]:
+                    - generic [ref=e728]: Pablo Ríos
+                    - generic [ref=e729]: Scrum Master
+              - cell "Scrum Master" [ref=e730]
+              - cell "Modernización" [ref=e731]
+              - cell "Interno" [ref=e732]
+              - cell "App Móvil Ventas 25%" [ref=e734]:
+                - generic [ref=e736]:
+                  - generic [ref=e737]: App Móvil Ventas
+                  - generic [ref=e738]: 25%
+              - cell "—" [ref=e739]
+              - cell "Disponible 75%" [ref=e740]
+              - cell "chevron_right" [ref=e744]
+            - row [ref=e745] [cursor=pointer]:
+              - cell "SR Sofía Rivas Desarrolladora Senior" [ref=e746]:
+                - generic [ref=e747]:
+                  - generic [ref=e748]: SR
+                  - generic [ref=e750]:
+                    - generic [ref=e751]: Sofía Rivas
+                    - generic [ref=e752]: Desarrolladora Senior
+              - cell "Desarrollador" [ref=e753]
+              - cell "Modernización" [ref=e754]
+              - cell "Interno" [ref=e755]
+              - cell "Portal Clientes 2.0 50% App Móvil Ventas 50%" [ref=e757]:
+                - generic [ref=e758]:
+                  - generic [ref=e759]:
+                    - generic [ref=e760]: Portal Clientes 2.0
+                    - generic [ref=e761]: 50%
+                  - generic [ref=e762]:
+                    - generic [ref=e763]: App Móvil Ventas
+                    - generic [ref=e764]: 50%
+              - cell "—" [ref=e765]
+              - cell "Activo" [ref=e766]
+              - cell "chevron_right" [ref=e770]
+            - row [ref=e771] [cursor=pointer]:
+              - cell "GT Gabriela Torres Desarrolladora Senior" [ref=e772]:
+                - generic [ref=e773]:
+                  - generic [ref=e774]: GT
+                  - generic [ref=e776]:
+                    - generic [ref=e777]: Gabriela Torres
+                    - generic [ref=e778]: Desarrolladora Senior
+              - cell "Desarrollador" [ref=e779]
+              - cell "Modernización" [ref=e780]
+              - cell "Interno" [ref=e781]
+              - cell "Portal Clientes 2.0 100%" [ref=e783]:
+                - generic [ref=e785]:
+                  - generic [ref=e786]: Portal Clientes 2.0
+                  - generic [ref=e787]: 100%
+              - cell "—" [ref=e788]
+              - cell "Activo" [ref=e789]
+              - cell "chevron_right" [ref=e793]
+            - row [ref=e794] [cursor=pointer]:
+              - cell "LO Lucía Ortega Desarrolladora" [ref=e795]:
+                - generic [ref=e796]:
+                  - generic [ref=e797]: LO
+                  - generic [ref=e799]:
+                    - generic [ref=e800]: Lucía Ortega
+                    - generic [ref=e801]: Desarrolladora
+              - cell "Desarrollador" [ref=e802]
+              - cell "Modernización" [ref=e803]
+              - cell "Externo" [ref=e804]
+              - cell "Portal Clientes 2.0 100%" [ref=e806]:
+                - generic [ref=e808]:
+                  - generic [ref=e809]: Portal Clientes 2.0
+                  - generic [ref=e810]: 100%
+              - cell "18 oct 2026 15 días" [ref=e811]:
+                - generic [ref=e812]:
+                  - generic [ref=e813]: 18 oct 2026
+                  - generic [ref=e814]: 15 días
+              - cell "Contrato vence en 15 d" [ref=e815]
+              - cell "chevron_right" [ref=e819]
+            - row [ref=e820] [cursor=pointer]:
+              - cell "KM Kevin Mora Desarrollador" [ref=e821]:
+                - generic [ref=e822]:
+                  - generic [ref=e823]: KM
+                  - generic [ref=e825]:
+                    - generic [ref=e826]: Kevin Mora
+                    - generic [ref=e827]: Desarrollador
+              - cell "Desarrollador" [ref=e828]
+              - cell "Modernización" [ref=e829]
+              - cell "Externo" [ref=e830]
+              - cell "App Móvil Ventas 100%" [ref=e832]:
+                - generic [ref=e834]:
+                  - generic [ref=e835]: App Móvil Ventas
+                  - generic [ref=e836]: 100%
+              - cell "5 oct 2026 2 días" [ref=e837]:
+                - generic [ref=e838]:
+                  - generic [ref=e839]: 5 oct 2026
+                  - generic [ref=e840]: 2 días
+              - cell "Contrato vence en 2 d" [ref=e841]
+              - cell "chevron_right" [ref=e845]
+            - row [ref=e846] [cursor=pointer]:
+              - cell "DP Diego Paredes Desarrollador Senior" [ref=e847]:
+                - generic [ref=e848]:
+                  - generic [ref=e849]: DP
+                  - generic [ref=e851]:
+                    - generic [ref=e852]: Diego Paredes
+                    - generic [ref=e853]: Desarrollador Senior
+              - cell "Desarrollador" [ref=e854]
+              - cell "Desarrollo" [ref=e855]
+              - cell "Externo" [ref=e856]
+              - cell "Core Pagos API 100%" [ref=e858]:
+                - generic [ref=e860]:
+                  - generic [ref=e861]: Core Pagos API
+                  - generic [ref=e862]: 100%
+              - cell "10 oct 2026 7 días" [ref=e863]:
+                - generic [ref=e864]:
+                  - generic [ref=e865]: 10 oct 2026
+                  - generic [ref=e866]: 7 días
+              - cell "Contrato vence en 7 d" [ref=e867]
+              - cell "chevron_right" [ref=e871]
+            - row [ref=e872] [cursor=pointer]:
+              - cell "VN Valeria Núñez Desarrolladora" [ref=e873]:
+                - generic [ref=e874]:
+                  - generic [ref=e875]: VN
+                  - generic [ref=e877]:
+                    - generic [ref=e878]: Valeria Núñez
+                    - generic [ref=e879]: Desarrolladora
+              - cell "Desarrollador" [ref=e880]
+              - cell "Desarrollo" [ref=e881]
+              - cell "Interno" [ref=e882]
+              - cell "Onboarding Digital 50%" [ref=e884]:
+                - generic [ref=e886]:
+                  - generic [ref=e887]: Onboarding Digital
+                  - generic [ref=e888]: 50%
+              - cell "—" [ref=e889]
+              - cell "Asignación termina en 17 d" [ref=e890]
+              - cell "chevron_right" [ref=e894]
+            - row [ref=e895] [cursor=pointer]:
+              - cell "AC Andrés Cevallos Desarrollador Senior" [ref=e896]:
+                - generic [ref=e897]:
+                  - generic [ref=e898]: AC
+                  - generic [ref=e900]:
+                    - generic [ref=e901]: Andrés Cevallos
+                    - generic [ref=e902]: Desarrollador Senior
+              - cell "Desarrollador" [ref=e903]
+              - cell "Desarrollo" [ref=e904]
+              - cell "Interno" [ref=e905]
+              - cell "Motor de Reglas Crédito 100% Migración Batch a Azure 25%" [ref=e907]:
+                - generic [ref=e908]:
+                  - generic [ref=e909]:
+                    - generic [ref=e910]: Motor de Reglas Crédito
+                    - generic [ref=e911]: 100%
+                  - generic [ref=e912]:
+                    - generic [ref=e913]: Migración Batch a Azure
+                    - generic [ref=e914]: 25%
+              - cell "—" [ref=e915]
+              - cell "Sobreasignado 125%" [ref=e916]
+              - cell "chevron_right" [ref=e920]
+            - row [ref=e921] [cursor=pointer]:
+              - cell "MV Mateo Vera Desarrollador" [ref=e922]:
+                - generic [ref=e923]:
+                  - generic [ref=e924]: MV
+                  - generic [ref=e926]:
+                    - generic [ref=e927]: Mateo Vera
+                    - generic [ref=e928]: Desarrollador
+              - cell "Desarrollador" [ref=e929]
+              - cell "Mantenimiento" [ref=e930]
+              - cell "Interno" [ref=e931]
+              - cell "Evolutivos Mantenimiento 100%" [ref=e933]:
+                - generic [ref=e935]:
+                  - generic [ref=e936]: Evolutivos Mantenimiento
+                  - generic [ref=e937]: 100%
+              - cell "—" [ref=e938]
+              - cell "Vacaciones 5–9 oct" [ref=e939]
+              - cell "chevron_right" [ref=e943]
+            - row [ref=e944] [cursor=pointer]:
+              - cell "CH Camila Herrera Desarrolladora" [ref=e945]:
+                - generic [ref=e946]:
+                  - generic [ref=e947]: CH
+                  - generic [ref=e949]:
+                    - generic [ref=e950]: Camila Herrera
+                    - generic [ref=e951]: Desarrolladora
+              - cell "Desarrollador" [ref=e952]
+              - cell "Mantenimiento" [ref=e953]
+              - cell "Externo" [ref=e954]
+              - cell "Evolutivos Mantenimiento 100%" [ref=e956]:
+                - generic [ref=e958]:
+                  - generic [ref=e959]: Evolutivos Mantenimiento
+                  - generic [ref=e960]: 100%
+              - cell "31 mar 2027 179 días" [ref=e961]:
+                - generic [ref=e962]:
+                  - generic [ref=e963]: 31 mar 2027
+                  - generic [ref=e964]: 179 días
+              - cell "Activo" [ref=e965]
+              - cell "chevron_right" [ref=e969]
+            - row [ref=e970] [cursor=pointer]:
+              - cell "LB Luis Benítez Desarrollador" [ref=e971]:
+                - generic [ref=e972]:
+                  - generic [ref=e973]: LB
+                  - generic [ref=e975]:
+                    - generic [ref=e976]: Luis Benítez
+                    - generic [ref=e977]: Desarrollador
+              - cell "Desarrollador" [ref=e978]
+              - cell "Mantenimiento" [ref=e979]
+              - cell "Externo" [ref=e980]
+              - cell "Evolutivos Mantenimiento 100%" [ref=e982]:
+                - generic [ref=e984]:
+                  - generic [ref=e985]: Evolutivos Mantenimiento
+                  - generic [ref=e986]: 100%
+              - cell "15 ene 2027 104 días" [ref=e987]:
+                - generic [ref=e988]:
+                  - generic [ref=e989]: 15 ene 2027
+                  - generic [ref=e990]: 104 días
+              - cell "Activo" [ref=e991]
+              - cell "chevron_right" [ref=e995]
+            - row [ref=e996] [cursor=pointer]:
+              - cell "DP Daniela Pozo Desarrolladora Senior" [ref=e997]:
+                - generic [ref=e998]:
+                  - generic [ref=e999]: DP
+                  - generic [ref=e1001]:
+                    - generic [ref=e1002]: Daniela Pozo
+                    - generic [ref=e1003]: Desarrolladora Senior
+              - cell "Desarrollador" [ref=e1004]
+              - cell "Mantenimiento" [ref=e1005]
+              - cell "Interno" [ref=e1006]
+              - cell "Evolutivos Mantenimiento 100%" [ref=e1008]:
+                - generic [ref=e1010]:
+                  - generic [ref=e1011]: Evolutivos Mantenimiento
+                  - generic [ref=e1012]: 100%
+              - cell "—" [ref=e1013]
+              - cell "Activo" [ref=e1014]
+              - cell "chevron_right" [ref=e1018]
+            - row [ref=e1019] [cursor=pointer]:
+              - cell "RL Ricardo León Desarrollador" [ref=e1020]:
+                - generic [ref=e1021]:
+                  - generic [ref=e1022]: RL
+                  - generic [ref=e1024]:
+                    - generic [ref=e1025]: Ricardo León
+                    - generic [ref=e1026]: Desarrollador
+              - cell "Desarrollador" [ref=e1027]
+              - cell "Mantenimiento" [ref=e1028]
+              - cell "Externo" [ref=e1029]
+              - cell "Evolutivos Mantenimiento 100%" [ref=e1031]:
+                - generic [ref=e1033]:
+                  - generic [ref=e1034]: Evolutivos Mantenimiento
+                  - generic [ref=e1035]: 100%
+              - cell "31 oct 2026 28 días" [ref=e1036]:
+                - generic [ref=e1037]:
+                  - generic [ref=e1038]: 31 oct 2026
+                  - generic [ref=e1039]: 28 días
+              - cell "Contrato vence en 28 d" [ref=e1040]
+              - cell "chevron_right" [ref=e1044]

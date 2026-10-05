@@ -1,0 +1,8 @@
+[     144ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/Volumes/D/proyectos/gestion-equipo/teamhub-ui/.angular/cache/22.2.1/teamhub-ui/vite/deps/core-DxESJmM_.js?v=a10db318:13455
+[     240ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:4200/api/v2/me:0
+[  228237ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:4200/api/v2/resources/proyecto:0
+[  316068ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/Volumes/D/proyectos/gestion-equipo/teamhub-ui/.angular/cache/22.2.1/teamhub-ui/vite/deps/core-DxESJmM_.js?v=a10db318:13455
+[  807036ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:4200/@vite/client:1030
+[  807126ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/Volumes/D/proyectos/gestion-equipo/teamhub-ui/.angular/cache/22.2.1/teamhub-ui/vite/deps/core-DxESJmM_.js?v=a10db318:13455
+[25778510ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:4200/@vite/client:1030
+[25778550ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/Volumes/D/proyectos/gestion-equipo/teamhub-ui/.angular/cache/22.2.1/teamhub-ui/vite/deps/core-DxESJmM_.js?v=a10db318:13455

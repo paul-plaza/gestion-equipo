@@ -1,0 +1,75 @@
+using Npgsql;
+using GestionEquipo.Api.TeamHub;
+
+var connection=Environment.GetEnvironmentVariable("TEAMHUB_TEST_CONNECTION")??throw new Exception("Set TEAMHUB_TEST_CONNECTION to a disposable PostgreSQL database.");
+await using var ds=NpgsqlDataSource.Create(new NpgsqlConnectionStringBuilder(connection){SearchPath="teamhub,public"}.ConnectionString);
+var db=new Database(ds);await db.Migrate();await db.Migrate();
+await using var c=await db.Open();await using var tx=await c.BeginTransactionAsync();
+await Database.Execute(c,"select pg_advisory_xact_lock(731290)");
+int passed=0;
+async Task<int> Id(string sql) => Convert.ToInt32((await Database.Query(c,sql))[0].Values.First());
+async Task Reject(string name,string sql,string? code=null){
+ await tx.SaveAsync("test");
+ try{await Database.Execute(c,sql);throw new Exception("ACCEPTED invalid case: "+name);}
+ catch(PostgresException e){if(code!=null&&e.SqlState!=code)throw;await tx.RollbackAsync("test");Console.WriteLine("PASS "+name);passed++;}
+}
+async Task Check(string name,string sql){var result=await Database.Query(c,sql);if(result.Count!=1||result[0].Values.First() is not true)throw new Exception("FAIL "+name);Console.WriteLine("PASS "+name);passed++;}
+var suffix=Guid.NewGuid().ToString("N")[..10];
+var boss=await Id($"insert into persona(nombres,apellidos,cedula,correo_institucional,tipo,rol_id,area_id,cargo_id,fecha_cumpleanos,piso,rol_app) values('Test','Boss','boss-{suffix}','boss-{suffix}@example.test','interno',1,1,1,'1990-01-01',3,'jefe_desarrollo') returning id");
+var person=await Id($"insert into persona(nombres,apellidos,cedula,correo_institucional,tipo,rol_id,area_id,cargo_id,fecha_cumpleanos,piso,jefe_directo_id) values('Test','Member','member-{suffix}','member-{suffix}@example.test','externo',1,1,1,'1992-02-29',3,{boss}) returning id");
+await Reject("unique cedula",$"update persona set cedula='boss-{suffix}' where id={person}","23505");
+await Reject("contracts only external",$"insert into contrato_externo(persona_id,fecha_inicio,fecha_fin) values({boss},'2027-01-01','2027-12-31')");
+var project=await Id($"insert into proyecto(nombre,fecha_inicio,fecha_fin,costo_total,rom) values('Test-{suffix}','2027-01-01','2027-12-31',120,100) returning id");
+await Check("ROM exceed is alert, not block",$"select presupuesto_excedido from vw_proyecto_alertas where proyecto_id={project}");
+await Reject("delay requires date and reason",$"update proyecto set atrasado=true where id={project}","23514");
+var app=await Id($"insert into aplicacion(nombre) values('Test-{suffix}') returning id");
+var pa=await Id($"insert into proyecto_aplicacion(proyecto_id,aplicacion_id,fecha_inicio_trabajo) values({project},{app},'2027-01-01') returning id");
+var testRfc=await Id($"insert into rfc(numero,ambiente) values('RFC-{project}1','TEST') returning id");
+var prodRfc=await Id($"insert into rfc(numero,ambiente,es_nocturno) values('RFC-{project}2','PROD',true) returning id");
+await Reject("RFC format", "insert into rfc(numero,ambiente) values('INVALID','TEST')","23514");
+await Reject("PROD requires TEST",$"insert into pase(proyecto_aplicacion_id,rfc_id,ambiente,fecha) values({pa},{prodRfc},'PROD','2027-01-05')");
+await Reject("TEST after work start",$"insert into pase(proyecto_aplicacion_id,rfc_id,ambiente,fecha) values({pa},{testRfc},'TEST','2026-12-31')");
+await Database.Execute(c,$"insert into pase(proyecto_aplicacion_id,rfc_id,ambiente,fecha) values({pa},{testRfc},'TEST','2027-01-02')");
+var prod=await Id($"insert into pase(proyecto_aplicacion_id,rfc_id,ambiente,fecha) values({pa},{prodRfc},'PROD','2027-01-05') returning id");
+await Reject("RFC environment FK",$"insert into hora_extra(persona_id,fecha,actividad,horas,proyecto_id,rfc_id) values({person},'2027-01-05','Test',3,{project},{testRfc})");
+var overtime=await Id($"insert into hora_extra(persona_id,fecha,actividad,horas,proyecto_id,rfc_id) values({person},'2027-01-05','Deploy',3,{project},{prodRfc}) returning id");
+await Reject("approval requires evidence",$"update hora_extra set estado='aprobada',aprobado_por={boss},fecha_resolucion=now() where id={overtime}");
+await Database.Execute(c,$"insert into evidencia_hora_extra(hora_extra_id,nombre_archivo,ruta_almacenamiento,tamano_bytes) values({overtime},'test.txt','database',10)");
+await Database.Execute(c,$"update hora_extra set estado='aprobada',aprobado_por={boss},fecha_resolucion=now() where id={overtime}");
+await Database.Execute(c,$"insert into recuperacion_hora(hora_extra_id,fecha,horas) values({overtime},'2027-01-06',1)");
+await Check("partial recovery saldo",$"select saldo=2 from vw_hora_extra_detalle where id={overtime}");
+await Reject("recovery cannot exceed balance",$"insert into recuperacion_hora(hora_extra_id,fecha,horas) values({overtime},'2027-01-07',3)");
+await Database.Execute(c,$"update proyecto set atrasado=true,atrasado_desde='2027-01-06',atrasado_motivo='Test' where id={project}");
+await Reject("delayed project prevents recovery",$"insert into recuperacion_hora(hora_extra_id,fecha,horas) values({overtime},'2027-01-07',1)");
+await Reject("approved hours immutable",$"update hora_extra set horas=8 where id={overtime}");
+await Reject("approved evidence immutable",$"delete from evidencia_hora_extra where hora_extra_id={overtime}");
+await Reject("vacation full Mon-Fri",$"insert into ausencia(persona_id,tipo,fecha_inicio,fecha_fin) values({person},'vacaciones','2027-01-04','2027-01-07')","23514");
+await Database.Execute(c,$"insert into ausencia(persona_id,tipo,fecha_inicio,fecha_fin) values({person},'vacaciones','2027-01-04','2027-01-08')");
+await Reject("vacation not consecutive",$"insert into ausencia(persona_id,tipo,fecha_inicio,fecha_fin) values({person},'vacaciones','2027-01-11','2027-01-15')");
+await Database.Execute(c,$"insert into ausencia(persona_id,tipo,fecha_inicio,fecha_fin) values({person},'vacaciones','2027-01-18','2027-01-22')");
+await Reject("vacation max two weeks",$"insert into ausencia(persona_id,tipo,fecha_inicio,fecha_fin) values({person},'vacaciones','2027-02-01','2027-02-05')");
+await Database.Execute(c,$"insert into ausencia(persona_id,tipo,fecha_inicio,fecha_fin) values({person},'cumpleanos','2027-02-28','2027-02-28')");
+await Reject("birthday once per year",$"insert into ausencia(persona_id,tipo,fecha_inicio,fecha_fin) values({person},'cumpleanos','2027-02-26','2027-02-26')","23505");
+await Reject("birthday date restriction",$"insert into ausencia(persona_id,tipo,fecha_inicio,fecha_fin) values({person},'cumpleanos','2028-01-01','2028-01-01')");
+await Database.Execute(c,$"insert into teletrabajo_plan(persona_id,fecha,modalidad) values({person},'2027-03-01','teletrabajo'),({person},'2027-03-02','teletrabajo')");
+await Reject("weekly remote limit",$"insert into teletrabajo_plan(persona_id,fecha,modalidad) values({person},'2027-03-03','teletrabajo')");
+await Database.Execute(c,$"insert into teletrabajo_ampliacion(persona_id,fecha_inicio,fecha_fin,dia_semana,aprobado_por) values({person},'2027-03-01','2027-03-05',3,{boss})");
+await Database.Execute(c,$"insert into teletrabajo_plan(persona_id,fecha,modalidad) values({person},'2027-03-03','teletrabajo')");
+await Check("temporary extension third day",$"select count(*)=3 from teletrabajo_plan where persona_id={person} and fecha between '2027-03-01' and '2027-03-05'");
+await Database.Execute(c,$"insert into teletrabajo_plan(persona_id,fecha,modalidad) values({person},'2027-03-08','teletrabajo'),({person},'2027-03-09','teletrabajo')");
+await Reject("extension expires",$"insert into teletrabajo_plan(persona_id,fecha,modalidad) values({person},'2027-03-10','teletrabajo')");
+await Database.Execute(c,"insert into config_oficina(piso,cupo) values(99,1)");
+await Database.Execute(c,$"update persona set piso=99 where id in ({boss},{person});insert into teletrabajo_plan(persona_id,fecha,modalidad) values({boss},'2027-04-01','oficina')");
+await Reject("office floor capacity",$"insert into teletrabajo_plan(persona_id,fecha,modalidad) values({person},'2027-04-01','oficina')");
+await Reject("objective number 1-7",$"insert into objetivo(persona_id,anio,numero,alcance) values({person},2027,8,'Test')");
+await Database.Execute(c,$"insert into objetivo(persona_id,anio,numero,alcance) values({person},2027,1,'Test'),({person},2028,1,'Test')");
+await Check("objectives isolated by year",$"select count(*)=2 from objetivo where persona_id={person}");
+await Reject("logro needs evidence",$"insert into logro(persona_id,titulo,descripcion,evidencia_url,fecha) values({person},'Test','Test','','2027-01-01')","23514");
+await Database.Execute(c,$"insert into evolutivo_hora(persona_id,fecha,aplicacion_id,actividad,horas) select {person},'2027-01-01'::date+n,{app},'Test',24 from generate_series(0,13) n");
+await Check("evolutivos can exceed 100 percent",$"select porcentaje>100 from vw_progreso_evolutivos where persona_id={person} and anio=2027");
+await Reject("assignment percentage by role",$"insert into asignacion(proyecto_id,persona_id,rol_proyecto,porcentaje,fecha_inicio,fecha_fin) values({project},{person},'desarrollador',25,'2027-01-01','2027-12-31')","23514");
+await Database.Execute(c,$"insert into asignacion(proyecto_id,persona_id,rol_proyecto,porcentaje,fecha_inicio,fecha_fin) values({project},{person},'desarrollador',50,'2027-01-01','2027-12-31')");
+await Reject("assignment overlapping same project",$"insert into asignacion(proyecto_id,persona_id,rol_proyecto,porcentaje,fecha_inicio,fecha_fin) values({project},{person},'desarrollador',50,'2027-02-01','2027-03-01')","23P01");
+await Check("DORA derived from PROD",$"select pases_prod=1 from vw_dora_frecuencia where proyecto_id={project}");
+await Check("audit automatically recorded",$"select count(*)>0 from auditoria where tabla='hora_extra' and registro_id='{overtime}' and accion='aprobacion'");
+await tx.RollbackAsync();Console.WriteLine($"{passed} integration checks passed; test data rolled back.");

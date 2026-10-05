@@ -1,0 +1,287 @@
+- generic [ref=e16]:
+  - complementary [ref=e17]:
+    - link "TH TeamHub Dev Gestión del equipo de desarrollo" [ref=e18] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=e19]: TH
+      - generic [ref=e20]:
+        - strong [ref=e21]: TeamHub Dev
+        - generic [ref=e22]: Gestión del equipo de desarrollo
+    - navigation "Navegación principal" [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]: Vista general
+        - button "space_dashboard Resumen general" [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: space_dashboard
+          - generic [ref=e28]: Resumen general
+      - generic [ref=e29]:
+        - generic [ref=e30]: Equipo y capacidad
+        - button "group Personas" [ref=e31] [cursor=pointer]:
+          - generic [ref=e32]: group
+          - generic [ref=e33]: Personas
+        - button "neurology Conocimientos" [ref=e34] [cursor=pointer]:
+          - generic [ref=e35]: neurology
+          - generic [ref=e36]: Conocimientos
+        - button "folder_open Proyectos" [ref=e37] [cursor=pointer]:
+          - generic [ref=e38]: folder_open
+          - generic [ref=e39]: Proyectos
+        - button "workspaces Capacidad y asignaciones" [ref=e40] [cursor=pointer]:
+          - generic [ref=e41]: workspaces
+          - generic [ref=e42]: Capacidad y asignaciones
+      - generic [ref=e43]:
+        - generic [ref=e44]: Día a día
+        - button "schedule Horas extra" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]: schedule
+          - generic [ref=e47]: Horas extra
+        - button "event_available Permisos y vacaciones" [ref=e48] [cursor=pointer]:
+          - generic [ref=e49]: event_available
+          - generic [ref=e50]: Permisos y vacaciones
+        - button "home_work Teletrabajo" [ref=e51] [cursor=pointer]:
+          - generic [ref=e52]: home_work
+          - generic [ref=e53]: Teletrabajo
+      - generic [ref=e54]:
+        - generic [ref=e55]: Desarrollo y métricas
+        - button "emoji_events Logros" [ref=e56] [cursor=pointer]:
+          - generic [ref=e57]: emoji_events
+          - generic [ref=e58]: Logros
+        - button "track_changes Objetivos" [ref=e59] [cursor=pointer]:
+          - generic [ref=e60]: track_changes
+          - generic [ref=e61]: Objetivos
+        - button "trending_up Evolutivos" [ref=e62] [cursor=pointer]:
+          - generic [ref=e63]: trending_up
+          - generic [ref=e64]: Evolutivos
+        - button "monitoring Métricas" [ref=e65] [cursor=pointer]:
+          - generic [ref=e66]: monitoring
+          - generic [ref=e67]: Métricas
+      - generic [ref=e68]:
+        - generic [ref=e69]: Administración
+        - button "settings Configuración" [ref=e70] [cursor=pointer]:
+          - generic [ref=e71]: settings
+          - generic [ref=e72]: Configuración
+        - button "history Auditoría" [ref=e73] [cursor=pointer]:
+          - generic [ref=e74]: history
+          - generic [ref=e75]: Auditoría
+    - generic [ref=e76]:
+      - generic [ref=e77]: AL
+      - generic [ref=e78]:
+        - strong [ref=e79]: Administrador Local
+        - generic [ref=e80]: Jefe de desarrollo
+      - button "Cerrar sesión" [ref=e81] [cursor=pointer]:
+        - generic [ref=e82]: logout
+  - generic [ref=e83]:
+    - banner [ref=e84]:
+      - button "Contraer navegación" [ref=e85] [cursor=pointer]:
+        - generic [ref=e86]: left_panel_close
+      - generic [ref=e87]:
+        - text: Mi espacio /
+        - strong [ref=e88]: Proyectos
+      - generic [ref=e89]:
+        - generic [ref=e90]: Desarrollo
+        - generic [ref=e91]: 03 oct 2026
+        - button "Ver notificaciones" [ref=e92] [cursor=pointer]:
+          - generic [ref=e93]: notifications
+    - main [ref=e94]:
+      - navigation "Vistas del módulo" [ref=e95]:
+        - button "Proyectos" [ref=e96] [cursor=pointer]
+        - button "Aplicaciones" [ref=e97] [cursor=pointer]
+        - button "RFC" [ref=e98] [cursor=pointer]
+        - button "Pases" [ref=e99] [cursor=pointer]
+        - button "Consumo de horas" [ref=e100] [cursor=pointer]
+        - button "Presupuesto de horas" [ref=e101] [cursor=pointer]
+        - button "Horas planificadas" [ref=e102] [cursor=pointer]
+        - button "Alertas" [ref=e103] [cursor=pointer]
+        - button "Facturación" [ref=e104] [cursor=pointer]
+        - button "Facturación detalle" [ref=e105] [cursor=pointer]
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - heading "Proyectos" [level=1] [ref=e109]
+            - paragraph [ref=e110]: 2 proyectos · 2 en curso · 0 atrasados
+          - generic [ref=e111]:
+            - generic "Vista de proyectos" [ref=e112]:
+              - button "grid_view Tarjetas" [pressed] [ref=e113] [cursor=pointer]:
+                - generic [ref=e114]: grid_view
+                - text: Tarjetas
+              - button "view_timeline Gantt" [ref=e115] [cursor=pointer]:
+                - generic [ref=e116]: view_timeline
+                - text: Gantt
+            - button "add Nuevo proyecto" [ref=e117] [cursor=pointer]:
+              - generic [ref=e118]: add
+              - text: Nuevo proyecto
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - button "Todos 2" [pressed] [ref=e121] [cursor=pointer]
+            - button "En curso 2" [ref=e122] [cursor=pointer]
+            - button "Atrasados 0" [ref=e123] [cursor=pointer]
+            - button "Por iniciar 0" [ref=e124] [cursor=pointer]
+            - button "Finalizados 0" [ref=e125] [cursor=pointer]
+          - generic [ref=e126]:
+            - generic [ref=e127]: search
+            - textbox "Buscar proyectos" [ref=e128]:
+              - /placeholder: Buscar proyecto…
+        - generic [ref=e129]:
+          - button "PRJ-2 Servicios de integración En curso Tiempo transcurrido 28% Fechas 3 sept 2026 – 17 dic 2026 Costo / ROM $4,000 · 33% 0 personas apps 1 apps" [ref=e130] [cursor=pointer]:
+            - generic [ref=e131]:
+              - generic [ref=e132]:
+                - text: PRJ-2
+                - heading "Servicios de integración" [level=2] [ref=e133]
+              - generic [ref=e134]: En curso
+            - generic [ref=e136]:
+              - generic [ref=e137]: Tiempo transcurrido
+              - strong [ref=e138]: 28%
+            - generic [ref=e141]:
+              - generic [ref=e142]:
+                - generic [ref=e143]: Fechas
+                - strong [ref=e144]: 3 sept 2026 – 17 dic 2026
+              - generic [ref=e145]:
+                - generic [ref=e146]: Costo / ROM
+                - strong [ref=e147]: $4,000 · 33%
+            - generic [ref=e148]:
+              - generic [ref=e149]: 0 personas
+              - generic [ref=e151]:
+                - generic [ref=e152]: apps
+                - text: 1 apps
+          - button "PRJ-1 Portal de clientes En curso Tiempo transcurrido 66% Fechas 4 ago 2026 – 2 nov 2026 Costo / ROM $8,500 · 85% AD GD 2 personas apps 2 apps" [ref=e153] [cursor=pointer]:
+            - generic [ref=e154]:
+              - generic [ref=e155]:
+                - text: PRJ-1
+                - heading "Portal de clientes" [level=2] [ref=e156]
+              - generic [ref=e157]: En curso
+            - generic [ref=e159]:
+              - generic [ref=e160]: Tiempo transcurrido
+              - strong [ref=e161]: 66%
+            - generic [ref=e164]:
+              - generic [ref=e165]:
+                - generic [ref=e166]: Fechas
+                - strong [ref=e167]: 4 ago 2026 – 2 nov 2026
+              - generic [ref=e168]:
+                - generic [ref=e169]: Costo / ROM
+                - strong [ref=e170]: $8,500 · 85%
+            - generic [ref=e171]:
+              - generic [ref=e172]:
+                - generic "Ana Desarrollo" [ref=e173]: AD
+                - generic "Gerardo Daniel Dominguez Cardenas" [ref=e174]: GD
+                - generic [ref=e175]: 2 personas
+              - generic [ref=e176]:
+                - generic [ref=e177]: apps
+                - text: 2 apps
+        - dialog [ref=e182]:
+          - generic [ref=e183]:
+            - generic [ref=e184]:
+              - generic [ref=e185]: PROYECTOS
+              - heading "Nuevo proyecto" [level=2] [ref=e186]
+              - paragraph [ref=e187]: Define el proyecto y las personas que van a participar.
+            - button "Cerrar diálogo" [ref=e188] [cursor=pointer]:
+              - generic [ref=e189]: close
+          - generic [ref=e190]:
+            - group [ref=e191]:
+              - generic [ref=e192]:
+                - generic [ref=e193]:
+                  - generic [ref=e194]: "1"
+                  - generic [ref=e195]:
+                    - heading "Información del proyecto" [level=3] [ref=e196]
+                    - paragraph [ref=e197]: Fechas, responsable y presupuesto
+                - generic [ref=e198]:
+                  - generic [ref=e199]:
+                    - text: Nombre del proyecto
+                    - emphasis [ref=e200]: "*"
+                  - textbox "Nombre del proyecto *" [ref=e201]:
+                    - /placeholder: Ej. Portal de clientes
+                - generic [ref=e202]:
+                  - generic [ref=e203]: Product Owner
+                  - combobox "Product Owner" [ref=e204]:
+                    - option "Selecciona un responsable" [selected]
+                    - option "Carla Mendez"
+                - generic [ref=e205]:
+                  - generic [ref=e206]: Tablero de Azure DevOps
+                  - textbox "Tablero de Azure DevOps" [ref=e207]:
+                    - /placeholder: https://dev.azure.com/…
+                - generic [ref=e208]:
+                  - generic [ref=e209]:
+                    - text: Fecha de inicio
+                    - emphasis [ref=e210]: "*"
+                  - textbox "Fecha de inicio *" [ref=e211]: 2026-10-03
+                - generic [ref=e212]:
+                  - generic [ref=e213]:
+                    - text: Fecha de fin
+                    - emphasis [ref=e214]: "*"
+                  - textbox "Fecha de fin *" [ref=e215]
+                - generic [ref=e216]:
+                  - generic [ref=e217]: Costo total (USD)
+                  - spinbutton "Costo total (USD)" [ref=e218]: "0"
+                - generic [ref=e219]:
+                  - generic [ref=e220]: ROM · costo máximo (USD)
+                  - spinbutton "ROM · costo máximo (USD)" [ref=e221]: "0"
+                - generic [ref=e222]:
+                  - generic [ref=e223]: Estado
+                  - combobox "Estado" [ref=e224]:
+                    - option "Por iniciar" [selected]
+                    - option "En curso"
+                    - option "Finalizado"
+                - generic [ref=e225]:
+                  - generic [ref=e226]: Seguimiento
+                  - combobox "Seguimiento" [ref=e227]:
+                    - option "Sin atraso marcado" [selected]
+                    - option "Atrasado"
+                - generic [ref=e228]:
+                  - generic [ref=e229]: "2"
+                  - generic [ref=e230]:
+                    - heading "Equipo del proyecto" [level=3] [ref=e231]
+                    - paragraph [ref=e232]: Agrega varias personas, con su rol y dedicación. Los externos requieren Product Owner.
+                  - button "person_add Agregar persona" [active] [ref=e233] [cursor=pointer]:
+                    - generic [ref=e234]: person_add
+                    - text: Agregar persona
+                - generic [ref=e246]:
+                  - generic [ref=e247]:
+                    - strong [ref=e248]: Integrante 1
+                    - button "Quitar integrante 1" [ref=e249] [cursor=pointer]:
+                      - generic [ref=e250]: close
+                  - generic [ref=e251]:
+                    - generic [ref=e252]:
+                      - generic [ref=e253]:
+                        - text: Persona
+                        - emphasis [ref=e254]: "*"
+                      - combobox "Persona *" [ref=e255]:
+                        - option "Selecciona una persona" [selected]
+                        - option "Administrador Local"
+                        - option "Ana Desarrollo"
+                        - option "Daniel Efrain Granizo Calvache"
+                        - option "Dennys Paul Plaza Quinchiguango"
+                        - option "Gerardo Daniel Dominguez Cardenas"
+                        - option "Luis Arquitectura"
+                    - generic [ref=e256]:
+                      - generic [ref=e257]:
+                        - text: Rol
+                        - emphasis [ref=e258]: "*"
+                      - combobox "Rol *" [ref=e259]:
+                        - option "Desarrollador" [selected]
+                        - option "Scrum Master"
+                        - option "Arquitecto"
+                    - generic [ref=e260]:
+                      - generic [ref=e261]:
+                        - text: Dedicación (%)
+                        - emphasis [ref=e262]: "*"
+                      - combobox "Dedicación (%) *" [ref=e263]:
+                        - option "50%"
+                        - option "100%" [selected]
+                    - generic [ref=e264]:
+                      - generic [ref=e265]:
+                        - text: Desde
+                        - emphasis [ref=e266]: "*"
+                      - textbox "Desde *" [ref=e267]: 2026-10-03
+                    - generic [ref=e268]:
+                      - generic [ref=e269]:
+                        - text: Hasta
+                        - emphasis [ref=e270]: "*"
+                      - textbox "Hasta *" [ref=e271]
+                    - generic [ref=e272]:
+                      - generic [ref=e273]: Horas / mes
+                      - spinbutton "Horas / mes" [ref=e274]
+                    - generic [ref=e275]:
+                      - generic [ref=e276]: Presupuesto de horas
+                      - spinbutton "Presupuesto de horas" [ref=e277]
+            - generic [ref=e241]:
+              - generic [ref=e242]: 1 asignaciones · * Campos obligatorios
+              - button "Cancelar" [ref=e243] [cursor=pointer]
+              - button "Crear proyecto" [disabled] [ref=e244]
+      - generic [ref=e178]:
+        - text: TeamHub Dev
+        - generic [ref=e179]: Planifica con claridad. Crece en equipo.

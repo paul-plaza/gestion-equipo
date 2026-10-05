@@ -1,0 +1,156 @@
+- generic [ref=e16]:
+  - complementary [ref=e17]:
+    - link "TH TeamHub Dev Gestión del equipo de desarrollo" [ref=e18] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=e19]: TH
+      - generic [ref=e20]:
+        - strong [ref=e21]: TeamHub Dev
+        - generic [ref=e22]: Gestión del equipo de desarrollo
+    - navigation "Navegación principal" [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]: Vista general
+        - button "space_dashboard Resumen general" [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: space_dashboard
+          - generic [ref=e28]: Resumen general
+      - generic [ref=e29]:
+        - generic [ref=e30]: Equipo y capacidad
+        - button "group Personas" [ref=e31] [cursor=pointer]:
+          - generic [ref=e32]: group
+          - generic [ref=e33]: Personas
+        - button "neurology Conocimientos" [ref=e34] [cursor=pointer]:
+          - generic [ref=e35]: neurology
+          - generic [ref=e36]: Conocimientos
+        - button "folder_open Proyectos" [ref=e37] [cursor=pointer]:
+          - generic [ref=e38]: folder_open
+          - generic [ref=e39]: Proyectos
+        - button "workspaces Capacidad y asignaciones" [ref=e40] [cursor=pointer]:
+          - generic [ref=e41]: workspaces
+          - generic [ref=e42]: Capacidad y asignaciones
+      - generic [ref=e43]:
+        - generic [ref=e44]: Día a día
+        - button "schedule Horas extra" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]: schedule
+          - generic [ref=e47]: Horas extra
+        - button "event_available Permisos y vacaciones" [ref=e48] [cursor=pointer]:
+          - generic [ref=e49]: event_available
+          - generic [ref=e50]: Permisos y vacaciones
+        - button "home_work Teletrabajo" [ref=e51] [cursor=pointer]:
+          - generic [ref=e52]: home_work
+          - generic [ref=e53]: Teletrabajo
+      - generic [ref=e54]:
+        - generic [ref=e55]: Desarrollo y métricas
+        - button "emoji_events Logros" [ref=e56] [cursor=pointer]:
+          - generic [ref=e57]: emoji_events
+          - generic [ref=e58]: Logros
+        - button "track_changes Objetivos" [ref=e59] [cursor=pointer]:
+          - generic [ref=e60]: track_changes
+          - generic [ref=e61]: Objetivos
+        - button "trending_up Evolutivos" [ref=e62] [cursor=pointer]:
+          - generic [ref=e63]: trending_up
+          - generic [ref=e64]: Evolutivos
+        - button "monitoring Métricas" [ref=e65] [cursor=pointer]:
+          - generic [ref=e66]: monitoring
+          - generic [ref=e67]: Métricas
+      - generic [ref=e68]:
+        - generic [ref=e69]: Administración
+        - button "settings Configuración" [ref=e70] [cursor=pointer]:
+          - generic [ref=e71]: settings
+          - generic [ref=e72]: Configuración
+        - button "history Auditoría" [ref=e73] [cursor=pointer]:
+          - generic [ref=e74]: history
+          - generic [ref=e75]: Auditoría
+    - generic [ref=e76]:
+      - generic [ref=e77]: AL
+      - generic [ref=e78]:
+        - strong [ref=e79]: Administrador Local
+        - generic [ref=e80]: Jefe de desarrollo
+      - button "Cerrar sesión" [ref=e81] [cursor=pointer]:
+        - generic [ref=e82]: logout
+  - generic [ref=e83]:
+    - banner [ref=e84]:
+      - button "Contraer navegación" [ref=e85] [cursor=pointer]:
+        - generic [ref=e86]: left_panel_close
+      - generic [ref=e87]:
+        - text: Mi espacio /
+        - strong [ref=e88]: Proyectos
+      - generic [ref=e89]:
+        - generic [ref=e90]: Desarrollo
+        - generic [ref=e91]: 03 oct 2026
+        - button "Ver notificaciones" [ref=e92] [cursor=pointer]:
+          - generic [ref=e93]: notifications
+    - main [ref=e94]:
+      - navigation "Vistas del módulo" [ref=e95]:
+        - button "Proyectos" [ref=e96] [cursor=pointer]
+        - button "Aplicaciones" [ref=e97] [cursor=pointer]
+        - button "RFC" [ref=e98] [cursor=pointer]
+        - button "Pases" [ref=e99] [cursor=pointer]
+        - button "Consumo de horas" [ref=e100] [cursor=pointer]
+        - button "Presupuesto de horas" [ref=e101] [cursor=pointer]
+        - button "Horas planificadas" [ref=e102] [cursor=pointer]
+        - button "Alertas" [ref=e103] [cursor=pointer]
+        - button "Facturación" [ref=e104] [cursor=pointer]
+        - button "Facturación detalle" [ref=e105] [cursor=pointer]
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - heading "Proyectos" [level=1] [ref=e109]
+            - paragraph [ref=e110]: 2 proyectos · 2 en curso · 0 atrasados
+          - generic [ref=e111]:
+            - generic "Vista de proyectos" [ref=e112]:
+              - button "grid_view Tarjetas" [ref=e113] [cursor=pointer]:
+                - generic [ref=e114]: grid_view
+                - text: Tarjetas
+              - button "view_timeline Gantt" [active] [pressed] [ref=e115] [cursor=pointer]:
+                - generic [ref=e116]: view_timeline
+                - text: Gantt
+            - button "add Nuevo proyecto" [ref=e117] [cursor=pointer]:
+              - generic [ref=e118]: add
+              - text: Nuevo proyecto
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - button "Todos 2" [pressed] [ref=e121] [cursor=pointer]
+            - button "En curso 2" [ref=e122] [cursor=pointer]
+            - button "Atrasados 0" [ref=e123] [cursor=pointer]
+            - button "Por iniciar 0" [ref=e124] [cursor=pointer]
+            - button "Finalizados 0" [ref=e125] [cursor=pointer]
+          - generic [ref=e126]:
+            - generic [ref=e127]: search
+            - textbox "Buscar proyectos" [ref=e128]:
+              - /placeholder: Buscar proyecto…
+        - generic [ref=e310]:
+          - generic [ref=e311]:
+            - generic [ref=e312]:
+              - heading "Vista Gantt anual · 2026" [level=2] [ref=e313]
+              - paragraph [ref=e314]: Selecciona un proyecto para abrir su ficha · las barras representan fechas planificadas
+            - generic [ref=e315]:
+              - text: Año
+              - spinbutton "Año" [ref=e316]: "2026"
+          - generic [ref=e317]:
+            - generic [ref=e318]:
+              - generic [ref=e319]: PROYECTO
+              - generic [ref=e320]:
+                - generic [ref=e321]: Ene
+                - generic [ref=e322]: Feb
+                - generic [ref=e323]: Mar
+                - generic [ref=e324]: Abr
+                - generic [ref=e325]: May
+                - generic [ref=e326]: Jun
+                - generic [ref=e327]: Jul
+                - generic [ref=e328]: Ago
+                - generic [ref=e329]: Sep
+                - generic [ref=e330]: Oct
+                - generic [ref=e331]: Nov
+                - generic [ref=e332]: Dic
+            - button "Servicios de integración 3 sept 2026 – 17 dic 2026 En curso" [ref=e333] [cursor=pointer]:
+              - generic [ref=e334]:
+                - strong [ref=e335]: Servicios de integración
+                - generic [ref=e336]: 3 sept 2026 – 17 dic 2026
+                - generic [ref=e337]: En curso
+            - button "Portal de clientes 4 ago 2026 – 2 nov 2026 En curso" [ref=e340] [cursor=pointer]:
+              - generic [ref=e341]:
+                - strong [ref=e342]: Portal de clientes
+                - generic [ref=e343]: 4 ago 2026 – 2 nov 2026
+                - generic [ref=e344]: En curso
+      - generic [ref=e178]:
+        - text: TeamHub Dev
+        - generic [ref=e179]: Planifica con claridad. Crece en equipo.

@@ -1,0 +1,227 @@
+- generic [ref=f1e4]:
+  - complementary [ref=f1e5]:
+    - link "TH TeamHub Dev Gestión del equipo de desarrollo" [ref=f1e6] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f1e7]: TH
+      - generic [ref=f1e8]:
+        - strong [ref=f1e9]: TeamHub Dev
+        - generic [ref=f1e10]: Gestión del equipo de desarrollo
+    - navigation "Navegación principal" [ref=f1e11]:
+      - generic [ref=f1e12]:
+        - generic [ref=f1e13]: Vista general
+        - button "space_dashboard Resumen general" [ref=f1e14] [cursor=pointer]:
+          - generic [ref=f1e15]: space_dashboard
+          - generic [ref=f1e16]: Resumen general
+      - generic [ref=f1e17]:
+        - generic [ref=f1e18]: Equipo y capacidad
+        - button "group Personas" [ref=f1e19] [cursor=pointer]:
+          - generic [ref=f1e20]: group
+          - generic [ref=f1e21]: Personas
+        - button "neurology Conocimientos" [ref=f1e22] [cursor=pointer]:
+          - generic [ref=f1e23]: neurology
+          - generic [ref=f1e24]: Conocimientos
+        - button "folder_open Proyectos" [ref=f1e25] [cursor=pointer]:
+          - generic [ref=f1e26]: folder_open
+          - generic [ref=f1e27]: Proyectos
+        - button "workspaces Capacidad y asignaciones" [ref=f1e28] [cursor=pointer]:
+          - generic [ref=f1e29]: workspaces
+          - generic [ref=f1e30]: Capacidad y asignaciones
+      - generic [ref=f1e31]:
+        - generic [ref=f1e32]: Día a día
+        - button "schedule Horas extra" [ref=f1e33] [cursor=pointer]:
+          - generic [ref=f1e34]: schedule
+          - generic [ref=f1e35]: Horas extra
+        - button "event_available Permisos y vacaciones" [ref=f1e36] [cursor=pointer]:
+          - generic [ref=f1e37]: event_available
+          - generic [ref=f1e38]: Permisos y vacaciones
+        - button "home_work Teletrabajo" [ref=f1e39] [cursor=pointer]:
+          - generic [ref=f1e40]: home_work
+          - generic [ref=f1e41]: Teletrabajo
+      - generic [ref=f1e42]:
+        - generic [ref=f1e43]: Desarrollo y métricas
+        - button "emoji_events Logros" [ref=f1e44] [cursor=pointer]:
+          - generic [ref=f1e45]: emoji_events
+          - generic [ref=f1e46]: Logros
+        - button "track_changes Objetivos" [ref=f1e47] [cursor=pointer]:
+          - generic [ref=f1e48]: track_changes
+          - generic [ref=f1e49]: Objetivos
+        - button "trending_up Evolutivos" [ref=f1e50] [cursor=pointer]:
+          - generic [ref=f1e51]: trending_up
+          - generic [ref=f1e52]: Evolutivos
+        - button "monitoring Métricas" [ref=f1e53] [cursor=pointer]:
+          - generic [ref=f1e54]: monitoring
+          - generic [ref=f1e55]: Métricas
+      - generic [ref=f1e56]:
+        - generic [ref=f1e57]: Administración
+        - button "settings Configuración" [ref=f1e58] [cursor=pointer]:
+          - generic [ref=f1e59]: settings
+          - generic [ref=f1e60]: Configuración
+        - button "history Auditoría" [ref=f1e61] [cursor=pointer]:
+          - generic [ref=f1e62]: history
+          - generic [ref=f1e63]: Auditoría
+    - generic [ref=f1e64]:
+      - generic [ref=f1e65]: AL
+      - generic [ref=f1e66]:
+        - strong [ref=f1e67]: Administrador Local
+        - generic [ref=f1e68]: Jefe de desarrollo
+      - button "Cerrar sesión" [ref=f1e69] [cursor=pointer]:
+        - generic [ref=f1e70]: logout
+  - generic [ref=f1e71]:
+    - banner [ref=f1e72]:
+      - button "Contraer navegación" [ref=f1e73] [cursor=pointer]:
+        - generic [ref=f1e74]: left_panel_close
+      - generic [ref=f1e75]:
+        - text: Mi espacio /
+        - strong [ref=f1e76]: Personas
+      - generic [ref=f1e77]:
+        - generic [ref=f1e78]: Desarrollo
+        - generic [ref=f1e79]: 04 oct 2026
+        - button "Ver notificaciones" [ref=f1e80] [cursor=pointer]:
+          - generic [ref=f1e81]: notifications
+    - main [ref=f1e82]:
+      - generic [ref=f1e83]:
+        - generic [ref=f1e84]:
+          - generic [ref=f1e85]:
+            - heading "Equipo" [level=1] [ref=f1e86]
+            - paragraph [ref=f1e87]: 6 personas · 4 internos · 2 externos · 3 áreas
+          - generic [ref=f1e88]:
+            - button "Exportar" [ref=f1e89] [cursor=pointer]
+            - button "+ Agregar persona" [ref=f1e90] [cursor=pointer]
+        - generic [ref=f1e91]:
+          - generic [ref=f1e92]:
+            - textbox "Buscar persona" [ref=f1e93]:
+              - /placeholder: Nombre, cédula o correo
+            - generic [ref=f1e94]:
+              - text: Cargo
+              - combobox "Cargo" [ref=f1e95]:
+                - option "Todos" [selected]
+                - option "Jefe de Arquitectura"
+                - option "Jefe de Mantenimiento"
+                - option "Jefe de Modernización"
+                - option "Líder de Desarrollo"
+            - generic [ref=f1e96]:
+              - text: Área
+              - combobox "Área" [ref=f1e97]:
+                - option "Todas" [selected]
+                - option "Arquitectos"
+                - option "Desarrollo evolutivo"
+                - option "Equipo de desarrollo"
+                - option "Equipo scrum"
+            - generic [ref=f1e98]:
+              - text: Proyecto
+              - combobox "Proyecto" [ref=f1e99]:
+                - option "Todos" [selected]
+                - option "Servicios de integración"
+                - option "Portal de clientes"
+            - generic "Tipo de persona" [ref=f1e100]:
+              - button "Todos" [pressed] [ref=f1e101] [cursor=pointer]
+              - button "Internos" [ref=f1e102] [cursor=pointer]
+              - button "Externos" [ref=f1e103] [cursor=pointer]
+            - generic [ref=f1e104]: 6 de 6
+          - table [ref=f1e106]:
+            - rowgroup [ref=f1e107]:
+              - row [ref=f1e108]:
+                - columnheader "Nombre" [ref=f1e109]
+                - columnheader "Rol" [ref=f1e110]
+                - columnheader "Área" [ref=f1e111]
+                - columnheader "Tipo" [ref=f1e112]
+                - columnheader "Proyecto(s) actual(es)" [ref=f1e113]
+                - columnheader "Fin de contrato" [ref=f1e114]
+                - columnheader "Estado" [ref=f1e115]
+                - columnheader "Ficha" [ref=f1e116]
+            - rowgroup [ref=f1e118]:
+              - row [ref=f1e119]:
+                - cell [ref=f1e120]:
+                  - button "GD Gerardo Daniel Dominguez Cardenas Líder de Desarrollo" [ref=f1e121] [cursor=pointer]:
+                    - generic [ref=f1e122]: GD
+                    - generic [ref=f1e123]:
+                      - strong [ref=f1e124]: Gerardo Daniel Dominguez Cardenas
+                      - generic [ref=f1e125]: Líder de Desarrollo
+                - cell "Desarrollador" [ref=f1e126]
+                - cell "Equipo de desarrollo" [ref=f1e127]
+                - cell "Externo" [ref=f1e128]
+                - cell "Sin asignación" [ref=f1e130]
+                - cell "3 dic 2026" [ref=f1e133]
+                - cell "Activo" [ref=f1e134]
+                - cell [ref=f1e136]:
+                  - button "Ver ficha de Gerardo Daniel Dominguez Cardenas" [ref=f1e137] [cursor=pointer]: →
+              - row [ref=f1e138]:
+                - cell [ref=f1e139]:
+                  - button "DP Dennys Paul Plaza Quinchiguango Líder de Desarrollo" [ref=f1e140] [cursor=pointer]:
+                    - generic [ref=f1e141]: DP
+                    - generic [ref=f1e142]:
+                      - strong [ref=f1e143]: Dennys Paul Plaza Quinchiguango
+                      - generic [ref=f1e144]: Líder de Desarrollo
+                - cell "Desarrollador" [ref=f1e145]
+                - cell "Equipo de desarrollo" [ref=f1e146]
+                - cell "Interno" [ref=f1e147]
+                - cell [ref=f1e149]:
+                  - button "Servicios de integración 100%" [ref=f1e151] [cursor=pointer]
+                - cell "—" [ref=f1e152]
+                - cell "Activo" [ref=f1e153]
+                - cell [ref=f1e155]:
+                  - button "Ver ficha de Dennys Paul Plaza Quinchiguango" [ref=f1e156] [cursor=pointer]: →
+              - row [ref=f1e157]:
+                - cell [ref=f1e158]:
+                  - button "DE Daniel Efrain Granizo Calvache Líder de Desarrollo" [ref=f1e159] [cursor=pointer]:
+                    - generic [ref=f1e160]: DE
+                    - generic [ref=f1e161]:
+                      - strong [ref=f1e162]: Daniel Efrain Granizo Calvache
+                      - generic [ref=f1e163]: Líder de Desarrollo
+                - cell "Desarrollador" [ref=f1e164]
+                - cell "Equipo de desarrollo" [ref=f1e165]
+                - cell "Interno" [ref=f1e166]
+                - cell "Sin asignación" [ref=f1e168]
+                - cell "—" [ref=f1e171]
+                - cell "Activo" [ref=f1e172]
+                - cell [ref=f1e174]:
+                  - button "Ver ficha de Daniel Efrain Granizo Calvache" [ref=f1e175] [cursor=pointer]: →
+              - row [ref=f1e176]:
+                - cell [ref=f1e177]:
+                  - button "LA Luis Arquitectura Jefe de Arquitectura" [ref=f1e178] [cursor=pointer]:
+                    - generic [ref=f1e179]: LA
+                    - generic [ref=f1e180]:
+                      - strong [ref=f1e181]: Luis Arquitectura
+                      - generic [ref=f1e182]: Jefe de Arquitectura
+                - cell "Arquitecto" [ref=f1e183]
+                - cell "Arquitectos" [ref=f1e184]
+                - cell "Externo" [ref=f1e185]
+                - cell "Sin asignación" [ref=f1e187]
+                - cell "20 oct 2027" [ref=f1e190]
+                - cell "Activo" [ref=f1e191]
+                - cell [ref=f1e193]:
+                  - button "Ver ficha de Luis Arquitectura" [ref=f1e194] [cursor=pointer]: →
+              - row [ref=f1e195]:
+                - cell [ref=f1e196]:
+                  - button "AD Ana Desarrollo Jefe de Modernización" [ref=f1e197] [cursor=pointer]:
+                    - generic [ref=f1e198]: AD
+                    - generic [ref=f1e199]:
+                      - strong [ref=f1e200]: Ana Desarrollo
+                      - generic [ref=f1e201]: Jefe de Modernización
+                - cell "Desarrollador" [ref=f1e202]
+                - cell "Equipo scrum" [ref=f1e203]
+                - cell "Interno" [ref=f1e204]
+                - cell [ref=f1e206]:
+                  - button "Portal de clientes 100%" [ref=f1e208] [cursor=pointer]
+                - cell "—" [ref=f1e209]
+                - cell "Activo" [ref=f1e210]
+                - cell [ref=f1e212]:
+                  - button "Ver ficha de Ana Desarrollo" [ref=f1e213] [cursor=pointer]: →
+              - row [ref=f1e214]:
+                - cell [ref=f1e215]:
+                  - button "AL Administrador Local Jefe de Modernización" [ref=f1e216] [cursor=pointer]:
+                    - generic [ref=f1e217]: AL
+                    - generic [ref=f1e218]:
+                      - strong [ref=f1e219]: Administrador Local
+                      - generic [ref=f1e220]: Jefe de Modernización
+                - cell "Desarrollador" [ref=f1e221]
+                - cell "Equipo scrum" [ref=f1e222]
+                - cell "Interno" [ref=f1e223]
+                - cell "Sin asignación" [ref=f1e225]
+                - cell "—" [ref=f1e228]
+                - cell "Activo" [ref=f1e229]
+                - cell [ref=f1e231]:
+                  - button "Ver ficha de Administrador Local" [ref=f1e232] [cursor=pointer]: →
+      - generic [ref=f1e233]:
+        - text: TeamHub Dev
+        - generic [ref=f1e234]: Planifica con claridad. Crece en equipo.

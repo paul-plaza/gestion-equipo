@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/pplaza/.claude/session-env/**)",
+      "Read(//Users/pplaza/.claude/**)",
+      "Bash(xargs cat)",
+      "Bash(dotnet new *)",
+      "Bash(dotnet workload *)",
+      "Bash(dotnet sln add *)",
+      "Bash(dotnet build *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); matches=[p for p in d.get\\('plugins',[]\\) if any\\(k in p['name'].lower\\(\\) for k in ['codex','opencode','multi','kimi']\\)]; print\\(json.dumps\\(matches, indent=2\\)\\)\")",
+      "Bash(claude plugin *)",
+      "Bash(python3 -m json.tool)",
+      "Bash(file ~/.claude/plugins/marketplaces/claude-plugins-official/external_plugins/github/*)",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}

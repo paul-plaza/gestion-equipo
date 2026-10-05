@@ -1,0 +1,110 @@
+@if (!api.actor()) {
+  <main class="login-page">
+    <div class="login-brand"><div class="brand-mark">TH</div><span>TeamHub Dev</span></div>
+    <section class="login-card">
+      <span class="eyebrow">TU EQUIPO, CONECTADO</span><h1>Un lugar para<br>trabajar mejor.</h1>
+      <p>Personas, proyectos y desarrollo profesional.<br>Inicia sesión para entrar a tu espacio de trabajo.</p>
+      @if (error()) {<div class="feedback error" role="alert">{{error()}}</div>}
+      @if (api.config()?.clientId) {<button class="primary full" (click)="login()" [disabled]="busy()"><span class="icon">login</span>{{busy()?'Conectando…':'Continuar con Microsoft'}}</button>}
+      @if (api.config()?.local) {<button class="primary full" (click)="login(true)" [disabled]="busy()">{{busy()?'Conectando…':'Entrar al entorno local'}}</button><small>Entorno de desarrollo · datos de ejemplo</small>}
+      @if (!api.config()?.local && !api.config()?.clientId && !loading()) {<div class="feedback">El acceso aún no está configurado. Contacta al administrador.</div>}
+      @if (loading()) {<div class="loading" role="status">Conectando con TeamHub…</div>}
+    </section><div class="login-footer">Claridad para planificar. Espacio para crecer.</div>
+  </main>
+} @else {
+<div class="shell" [class.compact]="collapsed()">
+ @if (mobileOpen()) {<button class="nav-scrim" aria-label="Cerrar menú" (click)="mobileOpen.set(false)"></button>}
+ <aside class="side" [class.mobile-open]="mobileOpen()">
+  <a class="brand" routerLink="/dashboard"><div class="brand-mark">TH</div>@if(!collapsed()){<div><strong>TeamHub Dev</strong><small>Gestión del equipo de desarrollo</small></div>}</a>
+  <nav aria-label="Navegación principal">@for(group of groups;track group){@if(visibleModules(group).length){<div class="nav-group">@if(!collapsed()){<div class="nav-label">{{group}}</div>}@for(m of visibleModules(group);track m.id){<button [class.active]="active().id===m.id" [attr.aria-current]="active().id===m.id?'page':null" [title]="m.label" (click)="navigate(m)"><span class="icon">{{m.icon}}</span>@if(!collapsed()){<span>{{m.label}}</span>}</button>}</div>}}</nav>
+  <div class="side-bottom"><span class="avatar">{{initials()}}</span>@if(!collapsed()){<div><strong>{{api.actor()!.name}}</strong><small>{{option(api.actor()!.role)}}</small></div>}<button class="icon-button" title="Cerrar sesión" aria-label="Cerrar sesión" (click)="logout()"><span class="icon">logout</span></button></div>
+ </aside>
+ <div class="workspace">
+  <header class="topbar"><button class="icon-button desktop-toggle" (click)="collapsed.set(!collapsed())" aria-label="Contraer navegación"><span class="icon">{{collapsed()?'left_panel_open':'left_panel_close'}}</span></button><button class="icon-button mobile-toggle" (click)="mobileOpen.set(!mobileOpen())" aria-label="Abrir navegación"><span class="icon">menu</span></button><div class="breadcrumb">Mi espacio <span>/</span> <strong>{{active().label}}</strong></div><div class="top-actions">@if(api.config()?.local){<span class="dev-chip">Desarrollo</span>}<span class="date-chip">{{formatDate(today())}}</span><button class="icon-button notification-button" aria-label="Ver notificaciones" [attr.aria-expanded]="notifications()" (click)="notifications.set(!notifications())"><span class="icon">notifications</span>@if(dashboard()?.pendientes){<i></i>}</button></div></header>
+  @if(notifications()){<section class="notification-panel"><h3>Notificaciones</h3><p>{{dashboard()?.pendientes??'Consulta los registros de'}} solicitudes pendientes de revisión.</p><button class="text-button" (click)="navigate(modules[5])">Revisar horas extra →</button><button class="text-button" (click)="navigate(modules[6])">Revisar permisos →</button></section>}
+  <main class="page">
+   @if(!isCustomScreen() && resource()?.name!=='proyecto'){<div class="page-heading"><div><div class="eyebrow">{{active().group}}</div><h1>{{active().label}}</h1><p>{{active().description}}</p></div><div class="heading-actions"><button class="secondary" (click)="load()" [disabled]="loading()"><span class="icon">refresh</span>Actualizar</button>@if(active().id!=='dashboard'){<button class="secondary" (click)="exportCsv()" [disabled]="!rows().length"><span class="icon">download</span>Exportar</button>}</div></div>
+   }
+   @if(error() && !modal()){<div class="feedback error" role="alert"><span class="icon">error</span>{{error()}}<button class="text-button" (click)="load()">Reintentar</button></div>}
+   @if(isCustomScreen()){
+    @switch(active().id){
+@case('equipo'){<app-people-screen [revision]="screenRevision()" [selectedId]="screenSelectedId()" (action)="openScreenRecord($event)" (navigate)="navigateScreen($event)" />}
+@case('conocimientos'){<app-skills-screen [revision]="screenRevision()" (action)="openScreenRecord($event)" (navigate)="navigateScreen($event)" />}
+@case('asignaciones'){<app-capacity-screen [revision]="screenRevision()" (action)="openScreenRecord($event)" (navigate)="navigateScreen($event)" />}
+@case('horas-extra'){<app-overtime-screen [revision]="screenRevision()" (action)="openScreenRecord($event)" (navigate)="navigateScreen($event)" />}
+@case('permisos'){<app-leave-screen [revision]="screenRevision()" [selectedId]="screenSelectedId()" (action)="openScreenRecord($event)" (navigate)="navigateScreen($event)" />}
+@case('teletrabajo'){<app-remote-screen [revision]="screenRevision()" [selectedId]="screenSelectedId()" (action)="openScreenRecord($event)" (navigate)="navigateScreen($event)" />}
+}
+   } @else if(active().id==='dashboard'){
+    @if(dashboard();as d){
+     <section class="stats-grid" aria-label="Indicadores del equipo"><article class="stat"><div class="stat-title">Personas activas <span class="icon">group</span></div><strong>{{d.kpis.personas}}</strong><small>Talento que construye el equipo</small></article><article class="stat"><div class="stat-title">Proyectos en marcha <span class="icon">folder_open</span></div><strong>{{d.kpis.proyectos}}</strong><small>Planificación y ejecución</small></article><article class="stat"><div class="stat-title">Proyectos atrasados <span class="icon">warning</span></div><strong class="danger-text">{{d.kpis.atrasados}}</strong><small>Requieren seguimiento</small></article><article class="stat"><div class="stat-title">Horas recuperables <span class="icon">schedule</span></div><strong>{{d.kpis.horas_recuperables}}<em>h</em></strong><small>Saldo aprobado y disponible</small></article></section>
+     <section class="dashboard-grid"><article class="panel timeline-panel"><div class="panel-heading"><div><h2>Hoja de ruta del equipo</h2><p>Fechas planificadas · {{year}}</p></div><button class="text-button" (click)="navigate(modules[3])">Ver proyectos <span class="icon">arrow_forward</span></button></div><div class="timeline-scroll"><div class="timeline-head"><span>PROYECTO</span><div>@for(month of months;track month){<span>{{month}}</span>}</div></div>@for(p of d.proyectos;track p.proyecto_id){<div class="timeline-row"><div><strong>{{p.nombre}}</strong><small>{{formatDate(p.fecha_fin)}}</small></div><div class="timeline-track"><span class="timeline-bar" [class.late]="p.atrasado" [style.left.%]="timelineLeft(p)" [style.width.%]="timelineWidth(p)" [title]="formatDate(p.fecha_inicio)+' — '+formatDate(p.fecha_fin)"></span></div></div>}@empty{<div class="empty"><span class="icon">folder_open</span><h3>Tu próximo proyecto empieza aquí</h3><p>Registra un proyecto para visualizar su planificación.</p></div>}</div><div class="panel-footer"><span class="legend-dot"></span>Planificado <span class="legend-dot late"></span>Atrasado <span class="muted">La barra representa fechas, no avance real.</span></div></article>
+      <article class="panel"><div class="panel-heading"><div><h2>Contratos por vencer</h2><p>Anticipa las próximas renovaciones</p></div><span class="icon muted">event_upcoming</span></div><div class="contract-list">@for(c of d.contratos;track c.persona_id){<div class="contract-row"><span class="avatar light">{{c.nombres[0]}}{{c.apellidos[0]}}</span><div><strong>{{c.nombres}} {{c.apellidos}}</strong><small>Termina {{formatDate(c.fecha_fin)}}</small></div><span class="badge" [class.danger]="c.dias_restantes<=7" [class.warning]="c.dias_restantes>7">{{c.dias_restantes}} días</span></div>}@empty{<div class="empty small"><span class="icon">verified</span><h3>Todo al día</h3><p>No hay contratos próximos a vencer.</p></div>}</div></article>
+     </section>
+     <article class="panel"><div class="panel-heading"><div><h2>Proyectos que necesitan atención</h2><p>Presupuesto, fechas y alertas del equipo</p></div><span class="badge neutral">Seguimiento</span></div><div class="project-cards">@for(p of d.proyectos;track p.proyecto_id){@if(p.atrasado||p.alerta_presupuesto||p.vencido_sin_cerrar){<div class="project-alert"><div class="project-alert-head"><span class="icon">{{p.atrasado?'error':'warning'}}</span><span class="badge" [class.danger]="p.atrasado" [class.warning]="!p.atrasado">{{p.atrasado?'Atrasado':p.presupuesto_excedido?'ROM excedido':p.vencido_sin_cerrar?'Vencido sin cerrar':'Revisar presupuesto'}}</span></div><h3>{{p.nombre}}</h3><p>Fin previsto: {{formatDate(p.fecha_fin)}}</p><div class="budget"><span>Presupuesto / ROM</span><strong>{{p.costo_total|number}} / {{p.rom|number}}</strong></div>@if(p.atrasado){<small>La recuperación de horas está bloqueada mientras continúe atrasado.</small>}</div>}}</div></article>
+    }
+   } @else {
+    <nav class="tabs" aria-label="Vistas del módulo">@for(t of active().tabs;track t.label){<button [class.selected]="tab()===t" [attr.aria-current]="tab()===t?'page':null" (click)="selectTab(t)">{{t.label}}</button>}</nav>
+    @if(resource()?.name==='proyecto'){
+     <app-projects [projects]="rows()" [loading]="loading()" [selectedId]="screenSelectedId()" (navigate)="navigateScreen($event)" (saved)="toast('Proyecto y equipo guardados');load()" />
+    }@else{
+    <section class="panel data-panel"><div class="data-toolbar"><div><h2>{{tab()?.label}}</h2><span class="muted">{{total}} registros</span></div><div class="table-tools">@if(tab()?.resource){<form class="search" (ngSubmit)="page=1;load()"><span class="icon">search</span><input aria-label="Buscar registros" placeholder="Buscar…" name="search" [(ngModel)]="search"><button type="submit" aria-label="Buscar"><span class="icon">arrow_forward</span></button></form>}@else{<label class="year-filter">Año <input type="number" min="1900" max="9999" [(ngModel)]="year" (change)="load()"></label>}@if(canCreate()){<button class="primary" (click)="open()"><span class="icon">add</span>Nuevo registro</button>}</div></div>
+    @if(tab()?.resource==='evidencia_hora_extra'){<div class="info-note"><span class="icon">info</span>Adjunta los archivos desde un registro de horas extra. Puedes descargar aquí las evidencias.</div>}
+    @if(tab()?.report==='sobreasignacion'){<div class="info-note"><span class="icon">info</span>La sobreasignación genera una alerta y no bloquea la planificación.</div>}
+    @if(tab()?.resource==='teletrabajo_plan'){<div class="info-note"><span class="icon">info</span>Registra la modalidad de cada día laboral. Los cupos cuentan las reservas de oficina confirmadas por piso.</div>}
+    @if(loading()){<div class="loading" role="status"><span class="spinner"></span>Cargando información…</div>}@else if(rows().length){
+     <div class="table-scroll"><table><thead><tr>@for(key of columns();track key){<th scope="col">{{label(key)}}</th>}@if(resource()){<th scope="col" class="actions-column">Acciones</th>}</tr></thead><tbody>@for(row of rows();track $index){<tr>@for(key of columns();track key){<td [class.numeric]="typeof row[key]==='number'">@if(key==='atrasado' && resource()?.name==='proyecto'){<span class="badge" [class]="'badge '+(row['atrasado']||proyectoVencido(row)?'danger':'success')">{{estadoAtraso(row)}}</span>}@else if(['estado','tipo','estado_recuperacion','modalidad'].includes(key)){<span class="badge" [class]="'badge '+tone(row[key])">{{display(row,key)}}</span>}@else{<span class="cell-text" [title]="display(row,key)">{{display(row,key)}}</span>}</td>}@if(resource()){<td class="row-actions"><button class="icon-button" (click)="open(row,true)" aria-label="Ver detalle" title="Ver detalle"><span class="icon">visibility</span></button>@if(canEdit(row)){<button class="icon-button" (click)="open(row)" aria-label="Editar registro" title="Editar"><span class="icon">edit</span></button>}@if(resource()?.name==='evidencia_hora_extra'){<button class="icon-button" (click)="download(row)" aria-label="Descargar evidencia"><span class="icon">download</span></button>}</td>}</tr>}</tbody></table></div>
+     <div class="pagination"><span>{{tab()?.resource?'Página '+page:'Resultados del informe'}}</span>@if(tab()?.resource){<button class="secondary" (click)="changePage(-1)" [disabled]="page<=1">Anterior</button><button class="secondary" (click)="changePage(1)" [disabled]="page*50>=total">Siguiente</button>}</div>
+    }@else{<div class="empty"><span class="empty-icon icon">{{active().icon}}</span><h3>{{search?'No encontramos coincidencias':'Aún no hay registros'}}</h3><p>{{search?'Prueba con otro término de búsqueda.':'La información aparecerá aquí cuando se registre actividad.'}}</p>@if(canCreate()){<button class="primary" (click)="open()"><span class="icon">add</span>Crear primer registro</button>}</div>}
+    </section>
+    }
+   }
+   @if(loading() && active().id==='dashboard'){<div class="loading" role="status"><span class="spinner"></span>Cargando resumen…</div>}
+   <footer class="page-footer">TeamHub Dev <span>Planifica con claridad. Crece en equipo.</span></footer>
+  </main>
+ </div>
+</div>
+}
+@if(notice()){<div class="toast" role="status"><span class="icon">check_circle</span>{{notice()}}<button class="icon-button" aria-label="Cerrar aviso" (click)="notice.set('')"><span class="icon">close</span></button></div>}
+@if(modal()){
+ <div class="dialog-backdrop"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
+  <header class="dialog-header"><div><span class="eyebrow">{{active().label}}</span><h2 id="dialog-title">{{modal()==='detail'?'Detalle':editId!==null?'Editar':'Nuevo registro'}} · {{resource()!.label}}</h2></div><button class="icon-button" (click)="close()" aria-label="Cerrar diálogo"><span class="icon">close</span></button></header>
+  @if(error()){<div class="feedback error" role="alert">{{error()}}</div>}
+  @if(modal()==='edit'){
+   <form #editForm="ngForm" (ngSubmit)="save()"><div class="form-grid">@for(f of fields();track f.name){@if(visibleField(f)){<label [class.wide]="multiline(f)"><span>{{f.label}} @if(isRequired(f)){<em>*</em>}</span>
+   @if(f.reference){<select [name]="f.name" [(ngModel)]="form[f.name]" [required]="isRequired(f)"><option [ngValue]="null">Selecciona una opción</option>@for(o of directories[f.reference]??[];track o.id){<option [ngValue]="o.id">{{o.label}}</option>}</select>}
+   @else if(f.options.length){<select [name]="f.name" [(ngModel)]="form[f.name]" [required]="isRequired(f)">@for(o of f.options;track o){<option [value]="o">{{option(o)}}</option>}</select>}
+   @else if(f.type==='boolean'){<select [name]="f.name" [(ngModel)]="form[f.name]"><option [ngValue]="false">No</option><option [ngValue]="true">Sí</option></select>}
+   @else if(multiline(f)){<textarea rows="3" [name]="f.name" [(ngModel)]="form[f.name]" [required]="isRequired(f)"></textarea>}
+   @else{<input [type]="inputType(f)" [name]="f.name" [(ngModel)]="form[f.name]" [required]="isRequired(f)" [attr.step]="f.type==='numeric'?'0.01':null" [attr.maxlength]="f.type==='text'?4000:null">}
+   </label>}}
+   @if(isExterno() && editId===null){
+    <div class="wide"><h3>Contrato (persona externa)</h3></div>
+    <label><span>Proveedor <em>*</em></span><select name="contrato_proveedor_id" [(ngModel)]="contractForm['proveedor_id']" required><option [ngValue]="null">Selecciona una opción</option>@for(o of directories['proveedor']??[];track o.id){<option [ngValue]="o.id">{{o.label}}</option>}</select></label>
+    <label><span>Costo por hora <em>*</em></span><input type="number" step="0.01" name="contrato_costo_hora" [(ngModel)]="contractForm['costo_hora']" required></label>
+    <label><span>Fecha inicio <em>*</em></span><input type="date" name="contrato_fecha_inicio" [(ngModel)]="contractForm['fecha_inicio']" required></label>
+    <label><span>Fecha fin <em>*</em></span><input type="date" name="contrato_fecha_fin" [(ngModel)]="contractForm['fecha_fin']" required></label>
+    <label class="wide"><span>Observación</span><textarea rows="2" name="contrato_observacion" [(ngModel)]="contractForm['observacion']"></textarea></label>
+   }
+   @if(isExterno() && editId!==null){
+    <div class="wide"><h3>Contrato</h3></div>
+    @if(vigenteContrato();as vc){<div class="wide info-note"><span class="icon">verified</span>{{proveedorLabel(vc['proveedor_id'])}} · {{vc['costo_hora']|number}}/hora · {{formatDate(vc['fecha_inicio'])}} – {{formatDate(vc['fecha_fin'])}}</div>}
+    @else{<div class="wide info-note"><span class="icon">info</span>Esta persona externa aún no tiene un contrato registrado.</div>}
+    <label><span>Proveedor</span><select name="renovacion_proveedor_id" [(ngModel)]="contractForm['proveedor_id']"><option [ngValue]="null">Selecciona una opción</option>@for(o of directories['proveedor']??[];track o.id){<option [ngValue]="o.id">{{o.label}}</option>}</select></label>
+    <label><span>Costo por hora</span><input type="number" step="0.01" name="renovacion_costo_hora" [(ngModel)]="contractForm['costo_hora']"></label>
+    <label><span>Fecha inicio</span><input type="date" name="renovacion_fecha_inicio" [(ngModel)]="contractForm['fecha_inicio']"></label>
+    <label><span>Fecha fin</span><input type="date" name="renovacion_fecha_fin" [(ngModel)]="contractForm['fecha_fin']"></label>
+    <label class="wide"><span>Observación</span><textarea rows="2" name="renovacion_observacion" [(ngModel)]="contractForm['observacion']"></textarea></label>
+    <div class="wide"><button type="button" class="secondary" [disabled]="busy()" (click)="saveRenewal()">{{vigenteContrato()?'Registrar renovación':'Registrar contrato'}}</button></div>
+   }
+   @if(resource()?.name==='proyecto' && proyectoVencido(form)){
+    <div class="wide info-note"><span class="icon">warning</span>La fecha de fin ya pasó y el proyecto no está finalizado ni marcado como atrasado (RN-27). Márcalo como atrasado si corresponde, con fecha y motivo.</div>
+   }
+  </div><footer class="dialog-footer"><span class="muted">* Campos obligatorios</span><button type="button" class="secondary" (click)="close()" [disabled]="busy()">Cancelar</button><button type="submit" class="primary" [disabled]="busy()||editForm.invalid">{{busy()?'Guardando…':'Guardar cambios'}}</button></footer></form>
+  }@else{
+   <dl class="detail-grid">@for(f of resource()!.fields;track f.name){@if(f.name!=='contenido'){<div [class.wide]="f.name==='datos'"><dt>{{f.label}}</dt><dd [class.code]="f.name==='datos'">{{display(selected()!,f.name)}}</dd></div>}}</dl>
+   @if(resource()?.name==='hora_extra' && selected()!['estado']==='pendiente'){<label class="upload-zone"><span class="icon">upload_file</span><strong>Adjuntar evidencia</strong><small>PDF, PNG, JPG o texto · hasta 10 MB</small><input type="file" accept=".pdf,.png,.jpg,.jpeg,.txt" (change)="upload($event,selected()!)" [disabled]="busy()"></label>}
+   <footer class="dialog-footer">@if(canDelete()){<button class="text-button danger-text" (click)="remove()" [disabled]="busy()">Eliminar</button>}<span class="spacer"></span>@if(selected()!['can_approve']){<button class="secondary" (click)="resolve(selected()!,false)" [disabled]="busy()">Rechazar</button><button class="primary" (click)="resolve(selected()!,true)" [disabled]="busy()">Aprobar</button>}@else{<button class="secondary" (click)="close()">Cerrar</button>@if(canEdit(selected()!)){<button class="primary" (click)="open(selected())">Editar registro</button>}}</footer>
+  }
+ </section></div>
+}

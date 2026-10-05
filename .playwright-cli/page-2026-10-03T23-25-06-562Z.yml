@@ -1,0 +1,11 @@
+- main [ref=f2e4]:
+  - generic [ref=f2e5]:
+    - generic [ref=f2e6]: TH
+    - generic [ref=f2e7]: TeamHub Dev
+  - generic [ref=f2e8]:
+    - generic [ref=f2e9]: TU EQUIPO, CONECTADO
+    - heading "Un lugar para trabajar mejor." [level=1] [ref=f2e10]: Un lugar paratrabajar mejor.
+    - paragraph [ref=f2e11]: Personas, proyectos y desarrollo profesional.Inicia sesión para entrar a tu espacio de trabajo.
+    - button "Entrar al entorno local" [ref=f2e12] [cursor=pointer]
+    - generic [ref=f2e13]: Entorno de desarrollo · datos de ejemplo
+  - generic [ref=f2e14]: Claridad para planificar. Espacio para crecer.
