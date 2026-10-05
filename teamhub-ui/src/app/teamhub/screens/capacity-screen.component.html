@@ -1,29 +1,129 @@
 <header class="capacity-heading">
- <div><h1>Asignaciones y capacidad</h1><p>Dedicación por persona y proyecto · {{ date(periods()[0].start ? newDate(periods()[0].start) : '') }} – {{ date(newDate(periods().at(-1)!.end)) }}</p></div>
- <div class="controls"><div class="switch" aria-label="Escala de capacidad"><button [class.selected]="mode()==='weeks'" [attr.aria-pressed]="mode()==='weeks'" (click)="switchMode('weeks')">Semanas</button><button [class.selected]="mode()==='months'" [attr.aria-pressed]="mode()==='months'" (click)="switchMode('months')">Meses</button></div>@if(canManage()){<button class="primary" (click)="assign()"><span class="icon" aria-hidden="true">add</span>Nueva asignación</button>}</div>
+    <div>
+        <h1>Asignaciones y capacidad</h1>
+        <p>Dedicación por persona y proyecto · {{ date(periods()[0].start ? newDate(periods()[0].start) : '') }} – {{
+            date(newDate(periods().at(-1)!.end)) }}</p>
+    </div>
+    <div class="controls">
+        <div class="switch" aria-label="Escala de capacidad"><button [class.selected]="mode()==='weeks'"
+                [attr.aria-pressed]="mode()==='weeks'" (click)="switchMode('weeks')">Semanas</button><button
+                [class.selected]="mode()==='months'" [attr.aria-pressed]="mode()==='months'"
+                (click)="switchMode('months')">Meses</button></div>@if(canManage()){<button class="primary"
+            (click)="assign()"><span class="icon" aria-hidden="true">add</span>Nueva asignación</button>}
+    </div>
 </header>
 @if(loading()){<div class="state" role="status">Cargando asignaciones y capacidad…</div>}
-@else if(error()){<div class="state" role="alert"><p>{{ error() }}</p><button class="secondary" (click)="load()">Reintentar</button></div>}
+@else if(error()){<div class="state" role="alert">
+    <p>{{ error() }}</p><button class="secondary" (click)="load()">Reintentar</button>
+</div>}
 @else{
- <div class="capacity-kpis">@for(k of kpis();track k.label){<article class="kpi"><div><span>{{ k.label }}</span><span class="icon" [class]="'icon '+k.tone" aria-hidden="true">{{ k.icon }}</span></div><p><strong>{{ k.value }}</strong> {{ k.unit }}</p><small>{{ k.note }}</small></article>}</div>
- <section class="capacity-panel" aria-label="Matriz de capacidad">
-  <div class="toolbar"><div class="areas"><button [class.selected]="!area()" [attr.aria-pressed]="!area()" (click)="area.set('')">Todas</button>@for(a of areas();track a['id']){<button [class.selected]="area()===String(a['id'])" [attr.aria-pressed]="area()===String(a['id'])" (click)="area.set(String(a['id']))">{{ a['nombre'] }}</button>}</div><label class="search-person"><span class="icon" aria-hidden="true">search</span><input aria-label="Buscar persona" placeholder="Buscar persona…" [ngModel]="query()" (ngModelChange)="query.set($event)"></label></div>
-  <div class="toolbar"><div class="legend"><span><i class="over"></i>Sobreasignado &gt; 100%</span><span><i class="full"></i>100%</span><span><i class="partial"></i>Disponible parcial</span><span><i class="free"></i>Libre</span></div><div class="controls"><button class="icon-button" aria-label="Período anterior" (click)="offset.update(decrement)"><span class="icon">chevron_left</span></button><button class="text-button" (click)="offset.set(0)">Hoy</button><button class="icon-button" aria-label="Período siguiente" (click)="offset.update(increment)"><span class="icon">chevron_right</span></button></div></div>
-  @if(!rows().length){<div class="state">No hay personas que coincidan con los filtros.</div>}@else{
-  <div class="matrix-scroll" tabindex="0" aria-label="Cronograma de asignaciones, desplaza para ver todos los períodos"><div class="matrix">
-   <div class="matrix-head"><div class="person-head">Persona</div><div class="timeline-head"><div class="groups">@for(g of groups();track $index){<span [style.flex]="g.count">{{ g.label }}</span>}</div><div class="periods">@for(p of periods();track p.start){<div [class.current]="now>=p.start&&now<=p.end"><b>{{ p.label }}</b><small>{{ p.sub }}</small></div>}</div></div></div>
-   @for(r of rows();track r.person['id']){
-    <div class="matrix-row"><div class="person-cell"><span class="avatar light" [class.external]="r.person['tipo']==='externo'">{{ initials(name(r.person)) }}</span><div><button class="person-link" (click)="navigate.emit({module:'equipo',id:r.person['id']})">{{ name(r.person) }}</button><small>{{ role(r.person) }}{{ r.person['tipo']==='externo'?' · ext.':'' }}</small></div><span class="load-badge" [class]="'load-badge '+tone(r.now)">{{ r.now }}%</span></div>
-    <div class="timeline">@if(showToday()){<i class="today-line" [style.left.%]="todayPosition()" title="Hoy"></i>}
-     @for(l of r.lanes;track l.assignment['id']){<div class="lane"><button class="assignment-bar" [style.left.%]="l.left" [style.width.%]="l.width" [style.background]="'hsl('+l.hue+' 55% 94%)'" [style.border-color]="'hsl('+l.hue+' 40% 58%)'" [style.color]="'hsl('+l.hue+' 50% 30%)'" [title]="projectName(l.assignment)+' · '+l.assignment['porcentaje']+'% · '+date(l.assignment['fecha_inicio'])+' – '+date(l.assignment['fecha_fin'])" (click)="action.emit({resource:'asignacion',row:l.assignment,detail:true})"><span>{{ projectName(l.assignment) }}</span><b>{{ l.assignment['porcentaje'] }}%</b></button></div>}
-     <div class="load-cells">@for(load of r.load;track $index){<span [class]="tone(load)" [title]="'Dedicación máxima del período: '+load+'%'">{{ load ? load+'%' : 'Libre' }}</span>}</div>
-    </div></div>
-   }
-  </div></div>}
- </section>
- <div class="bottom-grid"><section class="capacity-panel"><div class="section-heading"><div><h2>Disponibles pronto</h2><p>Terminan una asignación en los próximos 60 días</p></div><span class="load-badge partial">{{ soon().length }} personas</span></div>
-  @for(p of soon();track p.person['id']){<article class="soon-row"><span class="avatar light">{{ initials(name(p.person)) }}</span><div class="soon-person"><button class="person-link" (click)="navigate.emit({module:'equipo',id:p.person['id']})">{{ name(p.person) }}</button><small>{{ role(p.person) }}</small><p>Termina {{ p.ending }} el {{ date(newDate(p.end)) }}</p></div><div class="availability"><span class="load-badge" [class]="'load-badge '+(p.days<=7?'over':'partial')">En {{ p.days }} días</span><small>Libre <b>{{ p.free }}%</b> desde {{ date(p.from) }}</small>@if(canManage()){<button class="text-button" (click)="assign(undefined,p.person)">Asignar</button>}</div></article>}@empty{<p class="empty">No hay asignaciones que liberen capacidad en los próximos 60 días.</p>}
- </section><section class="capacity-panel"><div class="section-heading"><div><h2>Proyectos por iniciar</h2><p>Consulta su equipo y planifica nuevas asignaciones</p></div></div>
-  @for(p of upcoming();track p['id']){<article class="upcoming"><div class="project-title"><div><button class="person-link" (click)="navigate.emit({module:'proyectos',id:p['id']})">{{ p['nombre'] }}</button><p>{{ date(p['fecha_inicio']) }} – {{ date(p['fecha_fin']) }}</p></div><span class="load-badge partial">{{ projectTeam(p).length }} asignaciones</span></div><div class="project-team">@for(a of projectTeam(p);track a['id']){<button class="team-assignment" (click)="action.emit({resource:'asignacion',row:a,detail:true})">{{ assignmentPerson(a) }}<span>{{ a['porcentaje'] }}% · {{ roleLabel(a['rol_proyecto']) }}</span></button>}@empty{<small class="muted">Sin equipo asignado</small>}</div>@if(canManage()){<button class="secondary" (click)="assign(p)"><span class="icon" aria-hidden="true">person_add</span>Asignar persona</button>}</article>}@empty{<p class="empty">No hay proyectos por iniciar.</p>}
- </section></div>
+<div class="capacity-kpis">@for(k of kpis();track k.label){<article class="kpi">
+        <div><span>{{ k.label }}</span><span class="icon" [class]="'icon '+k.tone" aria-hidden="true">{{ k.icon
+                }}</span></div>
+        <p><strong>{{ k.value }}</strong> {{ k.unit }}</p><small>{{ k.note }}</small>
+    </article>}</div>
+<section class="capacity-panel" aria-label="Matriz de capacidad">
+    <div class="toolbar">
+        <div class="areas"><button [class.selected]="!area()" [attr.aria-pressed]="!area()"
+                (click)="area.set('')">Todas</button>@for(a of areas();track a['id']){<button
+                [class.selected]="area()===String(a['id'])" [attr.aria-pressed]="area()===String(a['id'])"
+                (click)="area.set(String(a['id']))">{{ a['nombre'] }}</button>}</div><label class="search-person"><span
+                class="icon" aria-hidden="true">search</span><input aria-label="Buscar persona"
+                placeholder="Buscar persona…" [ngModel]="query()" (ngModelChange)="query.set($event)"></label>
+    </div>
+    <div class="toolbar">
+        <div class="legend"><span><i class="over"></i>Sobreasignado &gt; 100%</span><span><i
+                    class="full"></i>100%</span><span><i class="partial"></i>Disponible parcial</span><span><i
+                    class="free"></i>Libre</span></div>
+        <div class="controls"><button class="icon-button" aria-label="Período anterior"
+                (click)="offset.update(decrement)"><span class="icon">chevron_left</span></button><button
+                class="text-button" (click)="offset.set(0)">Hoy</button><button class="icon-button"
+                aria-label="Período siguiente" (click)="offset.update(increment)"><span
+                    class="icon">chevron_right</span></button></div>
+    </div>
+    @if(!rows().length){<div class="state">No hay personas que coincidan con los filtros.</div>}@else{
+    <div class="matrix-scroll" tabindex="0"
+        aria-label="Cronograma de asignaciones, desplaza para ver todos los períodos">
+        <div class="matrix">
+            <div class="matrix-head">
+                <div class="person-head">Persona</div>
+                <div class="timeline-head">
+                    <div class="groups">@for(g of groups();track $index){<span [style.flex]="g.count">{{ g.label
+                            }}</span>}</div>
+                    <div class="periods">@for(p of periods();track p.start){<div
+                            [class.current]="now>=p.start&&now<=p.end"><b>{{ p.label }}</b><small>{{ p.sub }}</small>
+                        </div>}</div>
+                </div>
+            </div>
+            @for(r of rows();track r.person['id']){
+            <div class="matrix-row">
+                <div class="person-cell"><span class="avatar light" [class.external]="r.person['tipo']==='externo'">{{
+                        initials(name(r.person)) }}</span>
+                    <div><button class="person-link" (click)="navigate.emit({module:'equipo',id:r.person['id']})">{{
+                            name(r.person) }}</button><small>{{ role(r.person) }}{{ r.person['tipo']==='externo'?' ·
+                            ext.':'' }}</small></div><span class="load-badge" [class]="'load-badge '+tone(r.now)">{{
+                        r.now }}%</span>
+                </div>
+                <div class="timeline">@if(showToday()){<i class="today-line" [style.left.%]="todayPosition()"
+                        title="Hoy"></i>}
+                    @for(l of r.lanes;track l.assignment['id']){<div class="lane"><button class="assignment-bar"
+                            [style.left.%]="l.left" [style.width.%]="l.width"
+                            [style.background]="'hsl('+l.hue+' 55% 94%)'"
+                            [style.border-color]="'hsl('+l.hue+' 40% 58%)'" [style.color]="'hsl('+l.hue+' 50% 30%)'"
+                            [title]="projectName(l.assignment)+' · '+l.assignment['porcentaje']+'% · '+date(l.assignment['fecha_inicio'])+' – '+date(l.assignment['fecha_fin'])"
+                            (click)="action.emit({resource:'asignacion',row:l.assignment,detail:true})"><span>{{
+                                projectName(l.assignment) }}</span><b>{{ l.assignment['porcentaje'] }}%</b></button>
+                    </div>}
+                    <div class="load-cells">@for(load of r.load;track $index){<span [class]="tone(load)"
+                            [title]="'Dedicación máxima del período: '+load+'%'">{{ load ? load+'%' : 'Libre' }}</span>}
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>}
+</section>
+<div class="bottom-grid">
+    <section class="capacity-panel">
+        <div class="section-heading">
+            <div>
+                <h2>Disponibles pronto</h2>
+                <p>Terminan una asignación en los próximos 60 días</p>
+            </div><span class="load-badge partial">{{ soon().length }} personas</span>
+        </div>
+        @for(p of soon();track p.person['id']){<article class="soon-row"><span class="avatar light">{{
+                initials(name(p.person)) }}</span>
+            <div class="soon-person"><button class="person-link"
+                    (click)="navigate.emit({module:'equipo',id:p.person['id']})">{{ name(p.person) }}</button><small>{{
+                    role(p.person) }}</small>
+                <p>Termina {{ p.ending }} el {{ date(newDate(p.end)) }}</p>
+            </div>
+            <div class="availability"><span class="load-badge" [class]="'load-badge '+(p.days<=7?'over':'partial')">En
+                    {{ p.days }} días</span><small>Libre <b>{{ p.free }}%</b> desde {{ date(p.from)
+                    }}</small>@if(canManage()){<button class="text-button"
+                    (click)="assign(undefined,p.person)">Asignar</button>}</div>
+        </article>}@empty{<p class="empty">No hay asignaciones que liberen capacidad en los próximos 60 días.</p>}
+    </section>
+    <section class="capacity-panel">
+        <div class="section-heading">
+            <div>
+                <h2>Proyectos por iniciar</h2>
+                <p>Consulta su equipo y planifica nuevas asignaciones</p>
+            </div>
+        </div>
+        @for(p of upcoming();track p['id']){<article class="upcoming">
+            <div class="project-title">
+                <div><button class="person-link" (click)="navigate.emit({module:'proyectos',id:p['id']})">{{ p['nombre']
+                        }}</button>
+                    <p>{{ date(p['fecha_inicio']) }} – {{ date(p['fecha_fin']) }}</p>
+                </div><span class="load-badge partial">{{ projectTeam(p).length }} asignaciones</span>
+            </div>
+            <div class="project-team">@for(a of projectTeam(p);track a['id']){<button class="team-assignment"
+                    (click)="action.emit({resource:'asignacion',row:a,detail:true})">{{ assignmentPerson(a) }}<span>{{
+                        a['porcentaje'] }}% · {{ roleLabel(a['rol_proyecto']) }}</span></button>}@empty{<small
+                    class="muted">Sin equipo asignado</small>}</div>@if(canManage()){<button class="secondary"
+                (click)="assign(p)"><span class="icon" aria-hidden="true">person_add</span>Asignar persona</button>}
+        </article>}@empty{<p class="empty">No hay proyectos por iniciar.</p>}
+    </section>
+</div>
 }
